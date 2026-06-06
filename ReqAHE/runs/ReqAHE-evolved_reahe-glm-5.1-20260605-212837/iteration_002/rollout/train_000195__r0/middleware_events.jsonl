@@ -1,0 +1,2 @@
+{"type": "one_question_guard", "severity": "block", "message": "Ask only one focused question this turn. Split compound questions.", "middleware": "one_question_guard.py", "mode": "warn", "turn_index": 0}
+{"type": "one_question_guard", "severity": "block", "message": "Ask only one focused question this turn. Split compound questions.", "middleware": "one_question_guard.py", "mode": "warn", "turn_index": 1}

@@ -1,0 +1,28 @@
+{
+  "improved_tasks": [
+    "train_000195",
+    "train_000468",
+    "train_000483",
+    "train_000505",
+    "train_000900",
+    "train_000911",
+    "train_000997",
+    "train_001022",
+    "train_001062",
+    "train_001064",
+    "train_001080",
+    "train_001126",
+    "train_001182",
+    "train_001212",
+    "train_001359",
+    "train_001477",
+    "train_001588",
+    "train_004097",
+    "train_004621",
+    "train_006059",
+    "train_006215"
+  ],
+  "regressed_tasks": [],
+  "change_verdicts": [],
+  "note": "First iteration uses task deltas; manifest-level attribution is populated when previous manifests exist."
+}

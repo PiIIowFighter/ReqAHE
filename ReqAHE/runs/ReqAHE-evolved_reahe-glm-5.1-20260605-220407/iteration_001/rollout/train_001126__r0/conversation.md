@@ -1,0 +1,129 @@
+# train_001126
+
+Initial requirement: I need a hybrid app for local job searching that allows users to find opportunities, access learning resources, and communicate with others.
+
+## Conversation
+
+**Interviewer:** When users search for local jobs, what specific filters or criteria should they be able to use (e.g., job type, distance radius, industry, salary range, experience level)?
+
+**Oracle:** I'm not sure about the specific filters or criteria for job searching. I can tell you that I expect to use Google Maps integration to view the geographical location of job opportunities, which relates to location-based searching. Could you ask a more specific question about that, or about any other aspect of the app?
+
+Hit: True (IR4)
+
+**Interviewer:** When users view job opportunities on the Google Maps integration, what actions should they be able to take directly from the map (e.g., tap a pin to see job summary, get directions, save the job, apply directly)?
+
+**Oracle:** I'm not sure about the specific actions users should take directly from the map. I can confirm that I expect to use Google Maps integration to view the geographical location of job opportunities, but the details about what actions are available from the map view haven't been defined yet. Could you ask a more specific question about another aspect of the app?
+
+Hit: False ()
+
+**Interviewer:** What types of learning resources should the app provide (e.g., video courses, articles, certification programs, resume-building tools), and should they be tied to specific job categories or skills gaps?
+
+**Oracle:** I expect to access a learning management system to learn skills relevant to my career. However, I'm not sure about the specific types of learning resources (like video courses, articles, or certification programs) or exactly how they should be tied to job categories or skills gaps. Could you ask a more specific question about another aspect of the app?
+
+Hit: True (IR2)
+
+**Interviewer:** When users communicate with others in the app, who are they communicating with (e.g., employers/recruiters, fellow job seekers, mentors) and in what context (e.g., asking about a job posting, discussing learning resources, networking)?
+
+**Oracle:** I'm not sure about the specific details regarding who users communicate with or the context of those communications. I can confirm that the app should allow users to communicate with others as mentioned in the initial requirement, but the specifics about whether that's employers, fellow job seekers, or mentors, and the contexts for communication haven't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security, learning resources, or notifications?
+
+Hit: False ()
+
+**Interviewer:** Should the app send push notifications to users, and if so, for which specific events (e.g., new job postings matching their area, messages from other users, learning course deadlines, application status updates)?
+
+**Oracle:** I expect to receive notifications to be updated on important events and messages. However, I'm not sure about the specific events that should trigger notifications, such as new job postings, messages from other users, learning course deadlines, or application status updates. Could you ask a more specific question about another aspect of the app?
+
+Hit: True (IR5)
+
+**Interviewer:** Should users be required to create an account and log in to use the app, and if so, what personal information should they store in their profile (e.g., resume/work history, skills, education, contact preferences)?
+
+**Oracle:** I expect to log in to access my personal account securely and connect my social profiles within the app. However, I'm not sure about the specific personal information that should be stored in the user profile, such as resume/work history, skills, education, or contact preferences. Could you ask a more specific question about the login and social profile integration, or about another aspect of the app?
+
+Hit: True (IR1)
+
+**Interviewer:** Which social platforms should users be able to connect to their account (e.g., LinkedIn, Facebook, Google), and should the app automatically import any information from these profiles such as work history, skills, or profile photos?
+
+**Oracle:** I expect to connect my social profiles within the app, but I'm not sure about which specific social platforms (like LinkedIn, Facebook, or Google) should be supported, or whether the app should automatically import information such as work history, skills, or profile photos from those profiles. Could you ask a more specific question about another aspect of the app, such as user tracking, the visual design, or notifications?
+
+Hit: False ()
+
+**Interviewer:** When you mention user tracking, do you mean tracking the status of job applications users have submitted (e.g., applied, interviewed, offered, rejected), or tracking user activity and progress within the learning management system (e.g., course completion percentage, skills acquired)?
+
+**Oracle:** I'm not sure about those specific interpretations. I expect the app to perform user tracking to monitor my activity and improve my experience, but the details about whether that means tracking job application statuses, learning management system progress, or other types of activity haven't been defined yet. Could you ask a more specific question about another aspect of the app, such as the visual design or notifications?
+
+Hit: True (IR3)
+
+**Interviewer:** What visual style or branding should the app have (e.g., professional/corporate look with muted colors, or vibrant and modern with bold accents), and should it support both light and dark mode?
+
+**Oracle:** I prefer the primary background to be light goldenrod yellow and the app elements to be olive drab. However, I'm not sure about whether the app should support both light and dark mode. Could you ask a more specific question about that, or about another aspect of the app?
+
+Hit: True (IR6)
+
+**Interviewer:** Should the app support a dark mode that switches the light goldenrod yellow background and olive drab elements to darker alternatives, or should it only offer the light goldenrod yellow theme regardless of the device's system settings?
+
+**Oracle:** I'm not sure about whether the app should support a dark mode with darker alternatives or only offer the light goldenrod yellow theme. My preference is for the primary background to be light goldenrod yellow and the app elements to be olive drab, but the specifics about dark mode support haven't been defined. Could you ask a more specific question about another aspect of the app?
+
+Hit: False ()
+
+**Interviewer:** Should the communication feature support real-time text chat between users, or should it include other formats like voice/video calls, discussion forums, or comment threads on job postings and learning resources?
+
+**Oracle:** I'm not sure about the specific formats the communication feature should support, such as real-time text chat, voice/video calls, discussion forums, or comment threads. I can confirm that the app should allow users to communicate with others as mentioned in the initial requirement, but the details about which communication formats to include haven't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security, learning resources, notifications, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** For account security, should the app require multi-factor authentication (e.g., SMS code, authenticator app) during login, or is a simple password sufficient, and should users be able to enable biometric login (fingerprint/face recognition) on supported devices?
+
+**Oracle:** I expect to log in to access my personal account securely, but I'm not sure about the specific authentication methods such as multi-factor authentication, simple passwords, or biometric login options like fingerprint or face recognition. Could you ask a more specific question about another aspect of the app, such as the learning management system, notifications, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** When a user finds a job they're interested in, should they be able to apply directly through the app (e.g., submitting a stored resume and cover letter), or should the app redirect them to an external website or employer's application portal?
+
+**Oracle:** I'm not sure about the specific details regarding how users should apply for jobs, whether directly through the app with a stored resume and cover letter or by redirecting to an external website or employer's application portal. The initial requirement mentions finding opportunities, but the application process specifics haven't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security, learning resources, notifications, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** Should the app work offline or in areas with poor internet connectivity—for example, allowing users to view previously loaded job listings, continue reading learning resources, or access saved messages without an active connection?
+
+**Oracle:** I'm not sure about whether the app should work offline or in areas with poor internet connectivity, such as allowing users to view previously loaded job listings, continue reading learning resources, or access saved messages without an active connection. This aspect hasn't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security, learning resources, notifications, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** Since this is a hybrid app, which platforms should it target (iOS, Android, or both), and should it also be accessible as a web application, or is it strictly a mobile app?
+
+**Oracle:** I'm not sure about which specific platforms the hybrid app should target, such as iOS, Android, or both, or whether it should also be accessible as a web application. The initial requirement mentions it is a hybrid app for local job searching, but the specifics about platform targeting and web accessibility haven't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security, learning resources, notifications, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** Should users be able to save or bookmark job listings and learning resources to revisit later, and if so, should these saved items be organized into categories or lists (e.g., 'Saved Jobs', 'Favorite Courses', 'Applied Jobs')?
+
+**Oracle:** I'm not sure about whether users should be able to save or bookmark job listings and learning resources to revisit later, or how these saved items should be organized into categories or lists. This aspect hasn't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security, learning resources, notifications, user tracking, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** Should the app meet specific accessibility standards (such as WCAG guidelines) to support users with disabilities—for example, providing screen reader compatibility, text size adjustment, high contrast mode, or alternative text for map markers and images?
+
+**Oracle:** I'm not sure about whether the app should meet specific accessibility standards such as WCAG guidelines, or include features like screen reader compatibility, text size adjustment, high contrast mode, or alternative text for map markers and images. This aspect hasn't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security, learning resources, notifications, user tracking, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** When a new user first opens the app, what should the onboarding experience include—for example, should they be prompted to set their location and job preferences immediately, take a skills assessment, or browse content freely before creating an account?
+
+**Oracle:** I'm not sure about the specific onboarding experience for new users, such as whether they should be prompted to set their location and job preferences immediately, take a skills assessment, or browse content freely before creating an account. This aspect hasn't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security and social profile integration, learning resources, notifications, user tracking, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** Are employers and recruiters also users of this app who post job listings and interact with job seekers, or does the app only serve job seekers while pulling job listings from external sources?
+
+**Oracle:** I'm not sure about whether employers and recruiters are also users of the app who post job listings and interact with job seekers, or whether the app only serves job seekers while pulling job listings from external sources. This aspect hasn't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security and social profile integration, learning resources, notifications, user tracking, or the visual design?
+
+Hit: False ()
+
+**Interviewer:** Should the learning management system display progress indicators (such as percentage complete, badges, or certificates earned) on the user's profile that other users or potential employers can see, or should learning progress remain private to the individual user?
+
+**Oracle:** I'm not sure about whether the learning management system should display progress indicators such as percentage complete, badges, or certificates earned on the user's profile for others to see, or whether learning progress should remain private to the individual user. I expect to access a learning management system to learn skills relevant to my career, but the specifics about progress visibility and sharing haven't been defined yet. Could you ask a more specific question about another aspect of the app, such as account security and social profile integration, notifications, user tracking, or the visual design?
+
+Hit: False ()
+
+## Metrics
+
+IRE=1.0 TKQR=0.790249 approx_ESR=0.3

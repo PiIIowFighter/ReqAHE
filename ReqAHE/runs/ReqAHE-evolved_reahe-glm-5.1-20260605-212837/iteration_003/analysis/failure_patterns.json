@@ -1,0 +1,8 @@
+{
+  "compound_question_guard_trigger": 5,
+  "oracle_deflection_without_pivot": 3,
+  "missed_content_requirement": 4,
+  "missed_style_requirement": 1,
+  "zero_hit_turn": 5,
+  "drilling_on_deflected_topic": 2
+}

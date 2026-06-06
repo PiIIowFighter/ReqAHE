@@ -1,0 +1,84 @@
+{
+  "scenario_id": "train_000195",
+  "app_type": "CRM Systems",
+  "initial_req": "I need a WeChat mini-program for identity verification and online transaction services.",
+  "turns": [
+    {
+      "turn_index": 0,
+      "action": "ask_question",
+      "question": "What identity verification methods should the mini-program support (e.g., ID card OCR, facial recognition, phone number binding, bank card verification), and what types of online transactions will users perform (e.g., payments, transfers, purchases of specific services)?",
+      "oracle_answer": "For identity verification, I expect it to be implemented through real-name authentication, ID document upload with recognition, and facial recognition. Regarding the specific types of online transactions, I am not sure — could you ask a more specific question about that?",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "block",
+          "message": "Ask only one focused question this turn. Split compound questions.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 0
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": true,
+        "hit_requirement_ids": [
+          "IR1"
+        ],
+        "reasoning": "The interviewer asked about identity verification methods, and the user's response explicitly detailed the methods matching IR1 (real-name authentication, ID document upload with recognition, and facial recognition).",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 1,
+      "action": "ask_question",
+      "question": "Will users primarily be making payments for specific services (like utility bills, government fees, or insurance premiums), or will they be transferring money to other individuals or accounts?",
+      "oracle_answer": "I am not sure about the specific types of online transactions at this level of detail. Could you ask a more specific question about the transaction functionality?",
+      "middleware_events": [],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer asked about specific types of online transactions (payments for services vs. transfers), which does not relate to any of the remaining hidden implicit requirements (IR2: personal information query, IR3: online customer service chat, IR4: ghost white background, IR5: cadet blue components). The user's response also did not reveal any of these hidden requirements.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 2,
+      "action": "ask_question",
+      "question": "After a user completes identity verification, what should the immediate next step or screen be — should they be taken directly to a transaction interface, a dashboard with multiple options, or something else?",
+      "oracle_answer": "I am not sure about the specific navigation flow after identity verification. Could you ask a more specific question about the user interface or functionality?",
+      "middleware_events": [],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer asked about the navigation flow after identity verification, but the user responded that they are unsure about the specific navigation flow and asked for a more specific question. No hidden implicit requirements were revealed in this response. The remaining requirements (IR2 about personal information query, IR3 about online customer service, IR4 about ghost white background, IR5 about cadet blue components) were not mentioned or hinted at.",
+        "evaluator_mode": "llm"
+      }
+    }
+  ],
+  "final_metrics": {
+    "IRE": 0.2,
+    "TKQR": 0.545455,
+    "approx_ESR": 0.333333,
+    "turns": 3,
+    "hit_count": 1,
+    "total_implicit_requirements": 5,
+    "type_coverage": {
+      "interaction": 0.333333,
+      "content": 0.0,
+      "style": 0.0
+    },
+    "early_finish": false,
+    "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+    "duplicate_question_rate": 0.0,
+    "broad_question_rate": 0.0,
+    "unanswered_or_invalid_question_rate": 0.0
+  },
+  "failure_tags": [
+    "missed_content",
+    "missed_style"
+  ],
+  "agent_name": "evolved_reahe",
+  "evaluator_mode": "llm"
+}

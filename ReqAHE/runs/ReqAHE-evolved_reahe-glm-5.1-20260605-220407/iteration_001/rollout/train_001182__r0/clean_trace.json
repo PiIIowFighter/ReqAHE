@@ -1,0 +1,423 @@
+{
+  "scenario_id": "train_001182",
+  "app_type": "Project Management Tools",
+  "initial_req": "I need a website for creating and managing dynamic forms.",
+  "turns": [
+    {
+      "turn_index": 0,
+      "action": "ask_question",
+      "question": "Who are the main users of this system? Will there be distinct roles like form creators who build the forms and form respondents who fill them out, or is it a single user type?",
+      "oracle_answer": "I'm not sure about the specific user roles or whether there will be form respondents. My focus is on the form creation and management side, where I expect to log in and have the ability to customize form structures and preview them. If you have more specific questions about the form management features, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 0
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": true,
+        "hit_requirement_ids": [
+          "IR1",
+          "IR2",
+          "IR3"
+        ],
+        "reasoning": "The interviewer's question about user roles prompted the user to reveal multiple implicit requirements in their response. The user stated 'I expect to log in' which directly addresses IR1 (login to access form management features), 'have the ability to customize form structures' which addresses IR2 (customizing form structure by adding/removing fields), and 'preview them' which addresses IR3 (previewing the form's effect before finalizing). The style-related requirements IR4 and IR5 were not mentioned.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 1,
+      "action": "ask_question",
+      "question": "When you say 'dynamic forms,' what specific capabilities do you envision? For example, should form creators be able to add conditional logic (like showing certain fields only when a previous answer meets a condition), and what types of form fields do you need (text input, dropdowns, checkboxes, file uploads, date pickers, etc.)?",
+      "oracle_answer": "I expect to customize the form structure by adding or removing fields and editing their properties. However, I'm not sure about the specific details regarding conditional logic or the exact types of form fields needed at this time. If you have more specific questions about the form customization or management features, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 1
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer's question focused on functional capabilities of dynamic forms (conditional logic, field types), which relates to already-discovered IR2. The remaining undiscovered requirements IR4 (violet global background) and IR5 (indigo color for all components) are style preferences that were not addressed or elicited by this question.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 2,
+      "action": "ask_question",
+      "question": "When you edit a field's properties, what settings do you expect to configure? For example, should you be able to set field labels, placeholder text, whether a field is required or optional, validation rules (like min/max character length), and help text or descriptions for each field?",
+      "oracle_answer": "I'm not sure about the specific field property settings like labels, placeholder text, validation rules, or help text at this time. My expectation is generally to be able to edit field properties as part of customizing the form structure, but the exact details of what those properties entail haven't been defined yet. If you have more specific questions about the form customization or management features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 2
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer's question was about field property settings (labels, placeholder text, validation rules, etc.), which relates to functional/interaction aspects of form customization. The remaining hidden requirements (IR4 and IR5) are both about style preferences - specifically a violet global background and indigo-colored components. The question did not touch on visual design or color preferences, so it could not have elicited either of the remaining requirements.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 3,
+      "action": "ask_question",
+      "question": "What does 'managing' forms include for you? For example, should you be able to save forms as drafts and publish them later, organize forms into categories or folders, duplicate existing forms to create new ones, or track different versions of a form over time?",
+      "oracle_answer": "I'm not sure about the specific management features like saving drafts, publishing later, organizing into categories, duplicating forms, or version tracking at this time. My focus is on the core form creation and customization capabilities, where I expect to log in, customize form structures by adding or removing fields and editing their properties, and preview the forms before finalizing them. If you have more specific questions about the form customization or preview features, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 3
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer's question focused on form management features (saving drafts, publishing, organizing, duplicating, version tracking). The user's answer did not mention any style or color preferences. The remaining requirements IR4 (violet global background) and IR5 (indigo color for components) are both style-related requirements that were not elicited by this management-focused question.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 4,
+      "action": "ask_question",
+      "question": "When you preview a form, what should the preview show you? For example, should it display the form exactly as a respondent would see and interact with it (allowing you to test filling it out), or is it more of a visual layout check where you just see how the form looks without being able to interact with the fields?",
+      "oracle_answer": "I expect to preview the form's effect to see how it appears before finalizing it. However, I'm not sure about the specific details regarding whether the preview should be interactive like a respondent would experience, or just a visual layout check. My focus is on being able to see how the form looks before finalizing it. If you have more specific questions about the form customization or management features, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 4
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about the form preview functionality—specifically whether it should be interactive or just a visual layout check. The user's response focused on previewing the form's appearance before finalizing it, but did not mention any style or color preferences. The remaining hidden requirements (IR4 about violet global background and IR5 about indigo-colored components) are both style-related and were not elicited by this interaction-focused question.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 5,
+      "action": "ask_question",
+      "question": "When building a form, how do you envision the creation interface? For example, should it be a drag-and-drop canvas where you drag field types onto the form, a sidebar where you add fields from a list, or something simpler like a step-by-step wizard that walks you through adding fields one at a time?",
+      "oracle_answer": "I'm not sure about the specific details of the form creation interface, such as whether it should be drag-and-drop, sidebar-based, or a step-by-step wizard. My expectation is generally to be able to customize the form structure by adding or removing fields and editing their properties, but the exact interface mechanism for doing so hasn't been defined. If you have more specific questions about the form customization or preview features, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 5
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer asked about the form creation interface mechanism (drag-and-drop, sidebar, wizard), which relates to interaction design patterns. The user's response did not reveal any information about the remaining hidden requirements regarding visual styling preferences - specifically the violet global background (IR4) or indigo component colors (IR5). The question was focused on interaction flow rather than visual/theme preferences, so it did not elicit these style-related implicit requirements.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 6,
+      "action": "ask_question",
+      "question": "After you finalize a form, what do you expect to happen with it? For example, do you need to share or distribute the form to others (via a link, email, or embedding on a website), or is the form primarily for your own use within the system?",
+      "oracle_answer": "I'm not sure about what happens after finalizing a form, such as whether it needs to be shared or distributed to others via a link, email, or embedding, or if it's primarily for my own use within the system. My focus has been on the form creation and customization side—logging in, customizing form structures, and previewing them before finalizing. If you have more specific questions about the form customization or preview features, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 6
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about form distribution and sharing after finalization, which is unrelated to the remaining hidden requirements about style preferences (IR4: violet global background, IR5: indigo color for all components). The user's answer also did not mention any color or style preferences, so no remaining implicit requirements were elicited.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 7,
+      "action": "ask_question",
+      "question": "When you add fields to a form, should you be able to reorder them (for example, moving a field from the bottom to the top of the form), or will fields simply appear in the order you add them?",
+      "oracle_answer": "I'm not sure about the specific details regarding reordering fields after adding them. My expectation is generally to be able to customize the form structure by adding or removing fields and editing their properties, but whether reordering is part of that customization hasn't been defined. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about reordering fields in a form, which relates to form customization functionality. The user's response did not mention anything about visual styling preferences such as background color or component colors. The remaining hidden requirements (IR4 about violet global background and IR5 about indigo component colors) are both style-related and were not elicited by this interaction.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 8,
+      "action": "ask_question",
+      "question": "Should you be able to create and manage multiple forms, or is this system for working with just a single form at a time? If multiple forms, how would you want to identify or distinguish them (for example, by giving each form a title or name)?",
+      "oracle_answer": "I'm not sure about the specific details regarding whether the system should support multiple forms or just a single form at a time, or how to identify and distinguish them if there are multiple. My focus has been on the core form creation and customization capabilities—logging in, customizing form structures by adding or removing fields and editing their properties, and previewing the forms before finalizing them. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 8
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer asked about whether the system should support multiple forms and how to identify them, which is a functional question about form management. This is unrelated to the two remaining hidden implicit requirements (IR4 about violet global background and IR5 about indigo color for components), which are both style-related. The user's answer also did not touch on any visual or style preferences, so no remaining requirements were elicited.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 9,
+      "action": "ask_question",
+      "question": "You mentioned logging in as part of the workflow. Should the login be a simple username and password, or do you need other authentication methods like single sign-on or social login? Also, once logged in, what should you see first—a list of your existing forms or a blank form ready to edit?",
+      "oracle_answer": "I'm not sure about the specific authentication method details, such as whether it should be a simple username and password, single sign-on, or social login. I'm also not sure about what should be displayed first after logging in, such as a list of existing forms or a blank form. My expectation is generally to be able to log in to access the dynamic form management features, but the specifics of the authentication method and the initial landing page haven't been defined. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 9
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about authentication methods and the initial landing page after login, which are interaction-related aspects. The remaining hidden requirements (IR4 and IR5) are both style-related preferences—specifically about a violet global background and indigo-colored components. Neither the question nor the user's response touched on any visual design, color scheme, or styling preferences. Therefore, no remaining hidden implicit requirements were elicited.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 10,
+      "action": "ask_question",
+      "question": "What is the purpose or context of the forms you're creating? For example, are these forms for collecting customer information, internal business processes, surveys, registrations, or something else? Understanding what the forms will be used for may help clarify what features they need to support.",
+      "oracle_answer": "I'm not sure about the specific purpose or context of the forms, such as whether they're for collecting customer information, internal business processes, surveys, registrations, or something else. My focus has been on the core form creation and customization capabilities—logging in, customizing form structures by adding or removing fields and editing their properties, and previewing the forms before finalizing them. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 10
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about the purpose or context of the forms being created. This topic is unrelated to the remaining hidden requirements IR4 (violet global background) and IR5 (indigo color for all components), which are both style/color preferences. The user's answer also did not touch on any visual design or styling aspects, only reiterating their focus on core form creation and customization capabilities.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 11,
+      "action": "ask_question",
+      "question": "You've mentioned 'finalizing' forms a few times. What does finalizing a form mean to you? For example, does it mean you can no longer edit the form after finalizing it, or can you still go back and make changes? Also, should finalized forms be saved so you can return to them later?",
+      "oracle_answer": "I'm not sure about the specific details of what 'finalizing' a form entails, such as whether it locks the form from further editing, allows going back to make changes, or saves the form for later access. My expectation is generally to be able to preview the form's effect to see how it appears before finalizing it, but the specifics of what happens during and after finalization haven't been defined. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 11
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about what 'finalizing' a form means (whether it locks editing, allows changes, or saves for later). This is a functional/interaction question that does not relate to the remaining hidden requirements IR4 (violet global background) or IR5 (indigo component colors), which are both style-related. The user's answer also did not mention any visual or styling preferences, so no hidden implicit requirements were elicited.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 12,
+      "action": "ask_question",
+      "question": "You described these as 'dynamic forms' in your initial requirement. What makes the forms dynamic in your mind? For example, does 'dynamic' mean the form structure can change based on data (like fields appearing or hiding based on selections), does it mean the form content can be populated from an external data source, or does it simply mean you can modify the form structure yourself after creation?",
+      "oracle_answer": "I'm not sure about the specific meaning of 'dynamic' in terms of whether it refers to conditional logic like fields appearing or hiding based on selections, or forms being populated from an external data source. My expectation is generally to be able to customize the form structure by adding or removing fields and editing their properties, which gives the forms a flexible and modifiable nature. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 12
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about what makes the forms 'dynamic' (conditional logic, external data sources, or modifiable structure). The user's response focused on form customization capabilities and did not touch on any style or visual preferences. The remaining requirements IR4 (violet global background) and IR5 (indigo color for all components) are both style-related and were not elicited by this interaction.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 13,
+      "action": "ask_question",
+      "question": "When you're editing a form's structure—adding, removing, or modifying fields—how should the editing view work? For example, should you see the form taking shape in real-time as you make changes (a live editing experience), or should you make changes in one area and then click a separate 'Preview' button to see the result?",
+      "oracle_answer": "I'm not sure about the specific details of how the editing view should work, such as whether it should be a live editing experience where changes are seen in real-time, or a separate mode where you make changes and then click a 'Preview' button to see the result. My expectation is generally to be able to customize the form structure by adding or removing fields and editing their properties, and to preview the form's effect to see how it appears before finalizing it, but the specifics of how the editing interface relates to the preview haven't been defined. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 13
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about the editing view workflow (live editing vs. separate preview mode), which relates to interaction design. The user's response focused on their general expectations about form customization and preview, without mentioning any styling or color preferences. The remaining hidden requirements IR4 (violet global background) and IR5 (indigo color for components) are both style-related and were not elicited by this interaction-focused question.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 14,
+      "action": "ask_question",
+      "question": "When you preview a form to see how it appears, should the preview show the form with sample data filled in so you can see what a completed form looks like, or should it show an empty form the way a respondent would first see it before filling anything out?",
+      "oracle_answer": "I'm not sure about the specific details regarding whether the preview should show sample data filled in or display an empty form as a respondent would first see it. My expectation is generally to be able to preview the form's effect to see how it appears before finalizing it, but the specifics of what the preview displays haven't been defined. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about whether the form preview should display sample data or an empty form, which relates to the interaction/functional aspect of the preview feature. This question did not touch on any style-related aspects such as the violet global background (IR4) or indigo component colors (IR5). The user's response also did not reveal any information about these remaining style requirements.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 15,
+      "action": "ask_question",
+      "question": "When you add a field to a form, what are the most basic field types you would expect to have available? For example, at a minimum, would you need a text input field where users can type short answers, a larger text area for longer responses, and perhaps a dropdown to select from a list of options?",
+      "oracle_answer": "I'm not sure about the specific field types that should be available when adding a field to a form, such as text input, text area, dropdown, or others. My expectation is generally to be able to customize the form structure by adding or removing fields and editing their properties, but the exact types of fields haven't been defined. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 15
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The latest question asked about specific field types (text input, text area, dropdown), which relates to form functionality aspects already covered by IR2. The remaining hidden requirements IR4 (violet global background) and IR5 (indigo color for all components) are both style/color preferences that have not been probed at all in this conversation. The interviewer has focused exclusively on functional aspects of form creation and management, never asking about visual design, color scheme, or aesthetic preferences.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 16,
+      "action": "ask_question",
+      "question": "Should the forms you create be saved persistently so they're still available when you log back in later, or is it acceptable if forms are only kept during your current session and lost when you log out?",
+      "oracle_answer": "I'm not sure about the specific details regarding whether forms should be saved persistently so they're available when logging back in later, or if it's acceptable for them to only be kept during the current session. My focus has been on the core form creation and customization capabilities—logging in, customizing form structures by adding or removing fields and editing their properties, and previewing the forms before finalizing them. If you have more specific questions about the form customization or preview features I mentioned, I'd be happy to address those.",
+      "middleware_events": [
+        {
+          "type": "one_question_guard",
+          "severity": "warn",
+          "message": "Ask only one focused question this turn.",
+          "middleware": "one_question_guard.py",
+          "mode": "warn",
+          "turn_index": 16
+        }
+      ],
+      "evaluator": {
+        "action_type": "probe",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer asked about form persistence (whether forms should be saved across sessions), which is unrelated to the remaining hidden requirements IR4 (violet global background) and IR5 (indigo color for components). The user's answer also did not touch on any visual styling, color preferences, or design aspects. Neither of the two remaining style-related implicit requirements was elicited by this action.",
+        "evaluator_mode": "llm"
+      }
+    },
+    {
+      "turn_index": 17,
+      "action": "finish_interview",
+      "question": "",
+      "oracle_answer": "",
+      "finish_summary": "The user needs a website for creating and managing dynamic forms with the following core requirements identified: (1) Login functionality to access the system. (2) Form creation and customization by adding or removing fields. (3) Ability to edit field properties as part of customizing form structure. (4) Preview capability to see how forms appear before finalizing them. (5) A finalization step after previewing. The term 'dynamic' primarily refers to the flexible, modifiable nature of form structures rather than conditional logic or external data sources. Many specific details remain undefined by the user, including: specific field types, field property settings, conditional logic, form management features (drafts, publishing, categories, duplication, versioning), preview interactivity level, creation interface style (drag-and-drop vs wizard), post-finalization behavior, support for multiple forms, authentication method, landing page design, persistent storage requirements, and form distribution/sharing capabilities.",
+      "middleware_events": [],
+      "evaluator": {
+        "action_type": "finish",
+        "hit": false,
+        "hit_requirement_ids": [],
+        "reasoning": "The interviewer chose to finish the interview without ever probing about visual styling preferences, color schemes, or design aesthetics. The remaining hidden requirements IR4 (violet global background) and IR5 (indigo color for all components) are style-related requirements that were never discovered. The finish action itself does not elicit any new requirements from the user.",
+        "evaluator_mode": "llm"
+      }
+    }
+  ],
+  "final_metrics": {
+    "IRE": 0.6,
+    "TKQR": 0.437956,
+    "approx_ESR": 0.058824,
+    "turns": 18,
+    "hit_count": 3,
+    "total_implicit_requirements": 5,
+    "type_coverage": {
+      "interaction": 1.0,
+      "content": 0.0,
+      "style": 0.0
+    },
+    "early_finish": false,
+    "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+    "duplicate_question_rate": 0.0,
+    "broad_question_rate": 0.0,
+    "unanswered_or_invalid_question_rate": 0.0
+  },
+  "failure_tags": [
+    "missed_content",
+    "missed_style"
+  ],
+  "agent_name": "evolved_reahe",
+  "evaluator_mode": "llm"
+}

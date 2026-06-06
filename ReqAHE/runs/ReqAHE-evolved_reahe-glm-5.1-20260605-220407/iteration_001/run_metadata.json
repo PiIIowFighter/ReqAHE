@@ -1,0 +1,11 @@
+{
+  "agent": "evolved_reahe",
+  "split": "train",
+  "task_mode": "full",
+  "result_type": "internal_holdout_result",
+  "data_path": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\ReqElicitGym\\data\\converted_scenarios_1.json",
+  "max_turns": 20,
+  "rollouts_per_task": 1,
+  "model": "glm-5.1",
+  "fairness": "not strictly paper-fair if evolution used any ReqElicitGym scenario feedback"
+}

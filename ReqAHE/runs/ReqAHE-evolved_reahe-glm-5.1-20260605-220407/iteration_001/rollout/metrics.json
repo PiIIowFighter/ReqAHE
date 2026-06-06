@@ -1,0 +1,24 @@
+{
+  "task_count": 21,
+  "max_turns": 20,
+  "mean_IRE": 0.904762,
+  "mean_TKQR": 0.603548,
+  "approx_ESR": 0.167893,
+  "mean_turns": 18.428571,
+  "main_score": 0.799337,
+  "type_coverage": {
+    "interaction": 0.785714,
+    "content": 0.47619,
+    "style": 0.857143
+  },
+  "duplicate_question_rate": 0.0,
+  "broad_question_rate": 0.005602,
+  "early_finish_rate": 0.0,
+  "unanswered_or_invalid_question_rate": 0.0,
+  "exceed_ontoagent_IRE": true,
+  "exceed_ontoagent_TKQR": true,
+  "exceed_ontoagent_both": true,
+  "metric_caveats": [
+    "approx_ESR is not treated as the paper ESR unless a source ESR implementation is discovered."
+  ]
+}

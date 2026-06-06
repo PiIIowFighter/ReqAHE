@@ -1,0 +1,7 @@
+{
+  "compound_question_guard_trigger": 6,
+  "missed_content_requirement": 2,
+  "premature_finish": 1,
+  "irrelevant_probe_on_final_turn": 2,
+  "ignored_oracle_redirect": 2
+}

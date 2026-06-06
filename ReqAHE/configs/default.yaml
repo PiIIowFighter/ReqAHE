@@ -1,0 +1,34 @@
+project:
+  name: ReqAHE
+paths:
+  project_root: D:\Desktop\科研\.ICSE\projects\ReqAHE
+  typoagent_root: D:\Desktop\科研\.ICSE\projects\TypoAgent
+  reqelicitgym_root: D:\Desktop\科研\.ICSE\projects\ReqAHE\ReqElicitGym
+  ahe_root: D:\Desktop\科研\.ICSE\projects\agentic-harness-engineering
+llm:
+  base_url: ${OPENAI_BASE_URL}
+  api_key: ${OPENAI_API_KEY}
+  model: ${OPENAI_MODEL}
+  temperature: 0.2
+  max_tokens: 6000
+roles:
+  interviewer_model: ${INTERVIEWER_MODEL}
+  oracle_model: ${ORACLE_MODEL}
+  evaluator_model: ${EVALUATOR_MODEL}
+  debugger_model: ${DEBUGGER_MODEL}
+  evolver_model: ${EVOLVER_MODEL}
+evaluation:
+  max_turns: 15
+  rollouts_per_task: 1
+  dataset_file: converted_scenarios.json
+  dataset_number: 1
+  task_mode: sample
+  split: train
+  seed: 42
+evolution:
+  iterations: 3
+  middleware_mode: warn
+  objective:
+    main_score: "0.65*IRE + 0.35*TKQR"
+    target_IRE: 0.69
+    target_TKQR: 0.59

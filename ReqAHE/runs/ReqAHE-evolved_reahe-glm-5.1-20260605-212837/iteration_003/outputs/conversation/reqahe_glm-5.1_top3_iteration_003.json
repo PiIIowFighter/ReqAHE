@@ -1,0 +1,218 @@
+[
+  {
+    "task_id": "train_000195",
+    "task_name": "train_000195",
+    "application_type": "CRM Systems",
+    "initial_requirements": "I need a WeChat mini-program for identity verification and online transaction services.",
+    "user_stories": [
+      "As a user, I want to authenticate my real name, so that my identity is verified within the mini-program.",
+      "As a user, I want to upload ID information and use ID recognition, so that my identification documents are processed digitally.",
+      "As a user, I want to query personal information, so that I can view my specific data records.",
+      "As a user, I want to conduct online transactions, so that I can perform necessary operations within the platform.",
+      "As a user, I want to use facial recognition, so that I can verify my identity securely.",
+      "As a user, I want to chat with customer service online, so that I can get assistance when needed.",
+      "As a user, I want the page background to be ghost white, so that the interface has a specific visual style.",
+      "As a user, I want all components to be colored with cadet blue, so that the interface design is consistent."
+    ],
+    "user_answer_quality": "llm_oracle",
+    "interviewer_model": "glm-5.1",
+    "oracle_model": "glm-5.1",
+    "evaluator_model": "glm-5.1",
+    "conversation": [
+      {
+        "turn": 1,
+        "interviewer": "What identity verification methods should the mini-program support (e.g., ID card OCR, facial recognition, phone number binding, bank card verification), and what types of online transactions will users perform (e.g., payments, transfers, purchases of specific services)?",
+        "user": "For identity verification, I expect it to be implemented through real-name authentication, ID document upload with recognition, and facial recognition. Regarding the specific types of online transactions, I am not sure — could you ask a more specific question about that?",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.2,
+        "hit_requirement_ids": [
+          "IR1"
+        ]
+      },
+      {
+        "turn": 2,
+        "interviewer": "Will users primarily be making payments for specific services (like utility bills, government fees, or insurance premiums), or will they be transferring money to other individuals or accounts?",
+        "user": "I am not sure about the specific types of online transactions at this level of detail. Could you ask a more specific question about the transaction functionality?",
+        "action_type": "probe",
+        "is_relevant_to_url": false,
+        "elicitation_ratio": 0.2,
+        "hit_requirement_ids": []
+      },
+      {
+        "turn": 3,
+        "interviewer": "After a user completes identity verification, what should the immediate next step or screen be — should they be taken directly to a transaction interface, a dashboard with multiple options, or something else?",
+        "user": "I am not sure about the specific navigation flow after identity verification. Could you ask a more specific question about the user interface or functionality?",
+        "action_type": "probe",
+        "is_relevant_to_url": false,
+        "elicitation_ratio": 0.2,
+        "hit_requirement_ids": []
+      }
+    ],
+    "final_metrics": {
+      "IRE": 0.2,
+      "TKQR": 0.545455,
+      "approx_ESR": 0.333333,
+      "turns": 3,
+      "hit_count": 1,
+      "total_implicit_requirements": 5,
+      "type_coverage": {
+        "interaction": 0.333333,
+        "content": 0.0,
+        "style": 0.0
+      },
+      "early_finish": false,
+      "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+      "duplicate_question_rate": 0.0,
+      "broad_question_rate": 0.0,
+      "unanswered_or_invalid_question_rate": 0.0
+    },
+    "trace_dir": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\runs\\ReqAHE-evolved_reahe-glm-5.1-20260605-212837\\iteration_003\\rollout\\train_000195__r0"
+  },
+  {
+    "task_id": "train_000468",
+    "task_name": "train_000468",
+    "application_type": "Social Media Platforms",
+    "initial_requirements": "I need an instant messaging application for real-time communication between users.",
+    "user_stories": [
+      "As a user, I want to register and log in to my account, so that I can securely access the instant messaging software.",
+      "As a user, I want to add friends, so that I can connect with other users.",
+      "As a user, I want to create groups, so that I can communicate with multiple people simultaneously.",
+      "As a user, I want to send and receive messages in real-time, so that I can have immediate communication.",
+      "As a user, I want to send text, images, videos, and other types of messages, so that I can share various forms of content.",
+      "As a user, I want to engage in both group chats and private chats, so that I can communicate in different contexts.",
+      "As a user, I want to transfer files, so that I can share documents and data with others.",
+      "As a user, I want to make voice calls and video calls, so that I can communicate via audio and video.",
+      "As a user, I want the background color to be light blue, so that the interface has a specific visual style.",
+      "As a user, I want all elements to be dark blue, so that the interface components are visually consistent."
+    ],
+    "user_answer_quality": "llm_oracle",
+    "interviewer_model": "glm-5.1",
+    "oracle_model": "glm-5.1",
+    "evaluator_model": "glm-5.1",
+    "conversation": [
+      {
+        "turn": 1,
+        "interviewer": "What types of messages should users be able to send—text only, or also images, files, voice messages, and video? And should the app support both one-on-one and group conversations?",
+        "user": "Users should be able to send text, images, videos, and files to share various forms of content. As for conversations, yes, the app should support both one-on-one communication (adding friends) and group conversations (creating groups) so users can connect with others in different ways.",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.4,
+        "hit_requirement_ids": [
+          "IR2",
+          "IR3"
+        ]
+      },
+      {
+        "turn": 2,
+        "interviewer": "Should the app show message delivery status indicators (like sent, delivered, read) and provide push notifications for incoming messages?",
+        "user": "I'm not sure about those specific features. Could you ask a more specific question about the core messaging functionality, user interactions, or visual design of the application?",
+        "action_type": "probe",
+        "is_relevant_to_url": false,
+        "elicitation_ratio": 0.4,
+        "hit_requirement_ids": []
+      },
+      {
+        "turn": 3,
+        "interviewer": "What visual style or theme should the messaging app have—for example, a clean minimalist design with light colors, a dark mode option, or a specific color scheme and branding?",
+        "user": "I prefer the background color to be light blue and all elements to be dark blue.",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.6,
+        "hit_requirement_ids": [
+          "IR5"
+        ]
+      }
+    ],
+    "final_metrics": {
+      "IRE": 0.6,
+      "TKQR": 0.727273,
+      "approx_ESR": 0.666667,
+      "turns": 3,
+      "hit_count": 3,
+      "total_implicit_requirements": 5,
+      "type_coverage": {
+        "interaction": 0.333333,
+        "content": 1.0,
+        "style": 1.0
+      },
+      "early_finish": false,
+      "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+      "duplicate_question_rate": 0.0,
+      "broad_question_rate": 0.0,
+      "unanswered_or_invalid_question_rate": 0.0
+    },
+    "trace_dir": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\runs\\ReqAHE-evolved_reahe-glm-5.1-20260605-212837\\iteration_003\\rollout\\train_000468__r0"
+  },
+  {
+    "task_id": "train_000483",
+    "task_name": "train_000483",
+    "application_type": "Personal Portfolio Sites",
+    "initial_requirements": "I need a responsive web application that allows users to navigate different pages to view and submit data.",
+    "user_stories": [
+      "As a user, I want to browse different pages, so that I can navigate through the application content.",
+      "As a user, I want to submit forms, so that I can input and send data to the system.",
+      "As a user, I want to view data, so that I can see the information presented by the application.",
+      "As a user, I want the application to have a responsive design adapting to different screen sizes and devices, so that I can use it comfortably on any device.",
+      "As a user, I want the global background color to be light coral, so that the application has a specific visual appearance.",
+      "As a user, I want all UI pieces to be colored indian red, so that the interface components are visually consistent."
+    ],
+    "user_answer_quality": "llm_oracle",
+    "interviewer_model": "glm-5.1",
+    "oracle_model": "glm-5.1",
+    "evaluator_model": "glm-5.1",
+    "conversation": [
+      {
+        "turn": 1,
+        "interviewer": "What specific types of data will users be viewing and submitting? For example, are they working with customer records, product inventory, forms, reports, or something else?",
+        "user": "I prefer to input and send data by submitting forms. However, I'm not sure about the specific content types like customer records or inventory - that level of detail isn't something I've specified. Feel free to ask a more specific question about the interaction method or style preferences if needed.",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.25,
+        "hit_requirement_ids": [
+          "IR1"
+        ]
+      },
+      {
+        "turn": 2,
+        "interviewer": "After a user submits a form, what should happen next? For example, should they see a confirmation message, be redirected to another page, or be able to submit another form immediately?",
+        "user": "I'm not sure about the specific post-submission behavior such as confirmation messages or redirects. That level of detail hasn't been specified on my end. Feel free to ask a more specific question about the interaction method or style preferences if needed.",
+        "action_type": "probe",
+        "is_relevant_to_url": false,
+        "elicitation_ratio": 0.25,
+        "hit_requirement_ids": []
+      },
+      {
+        "turn": 3,
+        "interviewer": "Do you have any preferences for the visual style of the application, such as a light or dark theme, specific color schemes, or a particular layout density (e.g., compact vs. spacious)?",
+        "user": "Yes, I do have specific color preferences. I prefer the global background color to be light coral, and I prefer all UI pieces to be colored indian red.",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.75,
+        "hit_requirement_ids": [
+          "IR3",
+          "IR4"
+        ]
+      }
+    ],
+    "final_metrics": {
+      "IRE": 0.75,
+      "TKQR": 0.727273,
+      "approx_ESR": 0.666667,
+      "turns": 3,
+      "hit_count": 3,
+      "total_implicit_requirements": 4,
+      "type_coverage": {
+        "interaction": 0.5,
+        "content": 0.0,
+        "style": 1.0
+      },
+      "early_finish": false,
+      "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+      "duplicate_question_rate": 0.0,
+      "broad_question_rate": 0.0,
+      "unanswered_or_invalid_question_rate": 0.0
+    },
+    "trace_dir": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\runs\\ReqAHE-evolved_reahe-glm-5.1-20260605-212837\\iteration_003\\rollout\\train_000483__r0"
+  }
+]

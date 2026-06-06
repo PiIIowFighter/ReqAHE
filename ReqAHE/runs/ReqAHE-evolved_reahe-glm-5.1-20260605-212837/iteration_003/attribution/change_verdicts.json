@@ -1,0 +1,10 @@
+{
+  "improved_tasks": [],
+  "regressed_tasks": [
+    "train_000195",
+    "train_000468",
+    "train_000483"
+  ],
+  "change_verdicts": [],
+  "note": "First iteration uses task deltas; manifest-level attribution is populated when previous manifests exist."
+}

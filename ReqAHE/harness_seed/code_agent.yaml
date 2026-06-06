@@ -1,0 +1,18 @@
+name: seed_freeform_interviewer
+version: 0.1
+system_prompt: system_prompt.md
+middleware:
+  - middleware/one_question_guard.py
+  - middleware/duplicate_question_guard.py
+  - middleware/broad_question_guard.py
+  - middleware/premature_finish_guard.py
+  - middleware/style_requirement_guard.py
+tools:
+  - tools/ask_question.desc.md
+  - tools/finish_interview.desc.md
+skills:
+  - skills/requirements_interview_basics.md
+  - skills/probing_vs_clarification.md
+  - skills/interaction_content_style_taxonomy.md
+memory:
+  - memory/long_term_memory.md

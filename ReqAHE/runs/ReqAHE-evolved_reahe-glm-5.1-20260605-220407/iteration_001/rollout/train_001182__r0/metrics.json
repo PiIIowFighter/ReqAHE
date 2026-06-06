@@ -1,0 +1,18 @@
+{
+  "IRE": 0.6,
+  "TKQR": 0.437956,
+  "approx_ESR": 0.058824,
+  "turns": 18,
+  "hit_count": 3,
+  "total_implicit_requirements": 5,
+  "type_coverage": {
+    "interaction": 1.0,
+    "content": 0.0,
+    "style": 0.0
+  },
+  "early_finish": false,
+  "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+  "duplicate_question_rate": 0.0,
+  "broad_question_rate": 0.0,
+  "unanswered_or_invalid_question_rate": 0.0
+}

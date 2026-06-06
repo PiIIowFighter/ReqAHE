@@ -1,0 +1,221 @@
+[
+  {
+    "task_id": "train_000195",
+    "task_name": "train_000195",
+    "application_type": "CRM Systems",
+    "initial_requirements": "I need a WeChat mini-program for identity verification and online transaction services.",
+    "user_stories": [
+      "As a user, I want to authenticate my real name, so that my identity is verified within the mini-program.",
+      "As a user, I want to upload ID information and use ID recognition, so that my identification documents are processed digitally.",
+      "As a user, I want to query personal information, so that I can view my specific data records.",
+      "As a user, I want to conduct online transactions, so that I can perform necessary operations within the platform.",
+      "As a user, I want to use facial recognition, so that I can verify my identity securely.",
+      "As a user, I want to chat with customer service online, so that I can get assistance when needed.",
+      "As a user, I want the page background to be ghost white, so that the interface has a specific visual style.",
+      "As a user, I want all components to be colored with cadet blue, so that the interface design is consistent."
+    ],
+    "user_answer_quality": "llm_oracle",
+    "interviewer_model": "glm-5.1",
+    "oracle_model": "glm-5.1",
+    "evaluator_model": "glm-5.1",
+    "conversation": [
+      {
+        "turn": 1,
+        "interviewer": "What specific identity verification methods should be supported (e.g., ID card OCR scan, facial recognition, phone number binding), and what types of online transactions will users perform (e.g., payments, transfers, purchases)?",
+        "user": "For identity verification, I expect it to be implemented through real-name authentication, ID document upload with recognition, and facial recognition. Regarding the specific types of online transactions, I am not sure — could you ask a more specific question about that?",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.2,
+        "hit_requirement_ids": [
+          "IR1"
+        ]
+      },
+      {
+        "turn": 2,
+        "interviewer": "What visual style and branding preferences do you have for the mini-program — for example, color scheme, whether it should follow WeChat's native design guidelines or have a custom theme, and the desired density of information on screen?",
+        "user": "For the visual style, I prefer the page background to be ghost white and all components to be colored with cadet blue. Regarding whether to follow WeChat's native design guidelines or have a custom theme, and the desired density of information on screen, I am not sure — could you ask a more specific question about that?",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.6,
+        "hit_requirement_ids": [
+          "IR4",
+          "IR5"
+        ]
+      },
+      {
+        "turn": 3,
+        "interviewer": "WeChat mini-program for identity verification and online transactions. Identity verification supports: real-name authentication, ID document upload with OCR recognition, and facial recognition. Visual style: ghost white page background with cadet blue colored components. Online transaction types remain unspecified (user requested more specific probing). Theme approach (WeChat native vs custom) and information density preferences are undetermined.",
+        "user": "",
+        "action_type": "finish",
+        "is_relevant_to_url": false,
+        "elicitation_ratio": 0.6,
+        "hit_requirement_ids": []
+      }
+    ],
+    "final_metrics": {
+      "IRE": 0.6,
+      "TKQR": 0.818182,
+      "approx_ESR": 1.0,
+      "turns": 3,
+      "hit_count": 3,
+      "total_implicit_requirements": 5,
+      "type_coverage": {
+        "interaction": 0.333333,
+        "content": 0.0,
+        "style": 1.0
+      },
+      "early_finish": false,
+      "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+      "duplicate_question_rate": 0.0,
+      "broad_question_rate": 0.0,
+      "unanswered_or_invalid_question_rate": 0.0
+    },
+    "trace_dir": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\runs\\ReqAHE-evolved_reahe-glm-5.1-20260605-212837\\iteration_002\\rollout\\train_000195__r0"
+  },
+  {
+    "task_id": "train_000468",
+    "task_name": "train_000468",
+    "application_type": "Social Media Platforms",
+    "initial_requirements": "I need an instant messaging application for real-time communication between users.",
+    "user_stories": [
+      "As a user, I want to register and log in to my account, so that I can securely access the instant messaging software.",
+      "As a user, I want to add friends, so that I can connect with other users.",
+      "As a user, I want to create groups, so that I can communicate with multiple people simultaneously.",
+      "As a user, I want to send and receive messages in real-time, so that I can have immediate communication.",
+      "As a user, I want to send text, images, videos, and other types of messages, so that I can share various forms of content.",
+      "As a user, I want to engage in both group chats and private chats, so that I can communicate in different contexts.",
+      "As a user, I want to transfer files, so that I can share documents and data with others.",
+      "As a user, I want to make voice calls and video calls, so that I can communicate via audio and video.",
+      "As a user, I want the background color to be light blue, so that the interface has a specific visual style.",
+      "As a user, I want all elements to be dark blue, so that the interface components are visually consistent."
+    ],
+    "user_answer_quality": "llm_oracle",
+    "interviewer_model": "glm-5.1",
+    "oracle_model": "glm-5.1",
+    "evaluator_model": "glm-5.1",
+    "conversation": [
+      {
+        "turn": 1,
+        "interviewer": "Will users communicate only in one-on-one conversations, or do you need group chat functionality as well? Also, what types of messages should be supported beyond text (e.g., images, files, voice messages)?",
+        "user": "I expect to add friends and create groups to connect with other users. Additionally, I expect to send text, images, videos, and files to share various forms of content.",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.4,
+        "hit_requirement_ids": [
+          "IR2",
+          "IR3"
+        ]
+      },
+      {
+        "turn": 2,
+        "interviewer": "Do you have any preferences for the app's visual style, such as a light or dark theme, specific color scheme, or a particular messaging layout (e.g., bubble-style chat vs. minimal flat design)?",
+        "user": "I prefer the background color to be light blue and all elements to be dark blue.",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.6,
+        "hit_requirement_ids": [
+          "IR5"
+        ]
+      },
+      {
+        "turn": 3,
+        "interviewer": "Should users be able to see when their messages have been delivered or read (e.g., read receipts, delivery indicators), and do they need the ability to edit or delete sent messages?",
+        "user": "I am not sure about those specific features. Could you ask a more specific question about the core communication or visual style requirements?",
+        "action_type": "probe",
+        "is_relevant_to_url": false,
+        "elicitation_ratio": 0.6,
+        "hit_requirement_ids": []
+      }
+    ],
+    "final_metrics": {
+      "IRE": 0.6,
+      "TKQR": 0.818182,
+      "approx_ESR": 0.666667,
+      "turns": 3,
+      "hit_count": 3,
+      "total_implicit_requirements": 5,
+      "type_coverage": {
+        "interaction": 0.333333,
+        "content": 1.0,
+        "style": 1.0
+      },
+      "early_finish": false,
+      "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+      "duplicate_question_rate": 0.0,
+      "broad_question_rate": 0.0,
+      "unanswered_or_invalid_question_rate": 0.0
+    },
+    "trace_dir": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\runs\\ReqAHE-evolved_reahe-glm-5.1-20260605-212837\\iteration_002\\rollout\\train_000468__r0"
+  },
+  {
+    "task_id": "train_000483",
+    "task_name": "train_000483",
+    "application_type": "Personal Portfolio Sites",
+    "initial_requirements": "I need a responsive web application that allows users to navigate different pages to view and submit data.",
+    "user_stories": [
+      "As a user, I want to browse different pages, so that I can navigate through the application content.",
+      "As a user, I want to submit forms, so that I can input and send data to the system.",
+      "As a user, I want to view data, so that I can see the information presented by the application.",
+      "As a user, I want the application to have a responsive design adapting to different screen sizes and devices, so that I can use it comfortably on any device.",
+      "As a user, I want the global background color to be light coral, so that the application has a specific visual appearance.",
+      "As a user, I want all UI pieces to be colored indian red, so that the interface components are visually consistent."
+    ],
+    "user_answer_quality": "llm_oracle",
+    "interviewer_model": "glm-5.1",
+    "oracle_model": "glm-5.1",
+    "evaluator_model": "glm-5.1",
+    "conversation": [
+      {
+        "turn": 1,
+        "interviewer": "What specific pages or sections do you envision users navigating between, and what actions should they be able to perform on each page (e.g., view a dashboard, fill out a form, review submissions)?",
+        "user": "Regarding actions, I prefer that users input and send data by submitting forms (rather than other interaction methods). As for the specific pages or sections, I'm not sure I have a detailed vision for that yet—could you ask a more specific question about what you'd like to know regarding the navigation structure or page content?",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.25,
+        "hit_requirement_ids": [
+          "IR1"
+        ]
+      },
+      {
+        "turn": 2,
+        "interviewer": "Do you have any preferences for the visual style of the application—such as a light or dark theme, color palette, or whether the layout should feel dense and data-heavy or spacious and minimal?",
+        "user": "Yes, I have specific color preferences. I prefer the global background color to be light coral, and I prefer all UI pieces to be colored indian red. As for whether the layout should feel dense or spacious, I don't have a strong preference on that yet.",
+        "action_type": "probe",
+        "is_relevant_to_url": true,
+        "elicitation_ratio": 0.75,
+        "hit_requirement_ids": [
+          "IR3",
+          "IR4"
+        ]
+      },
+      {
+        "turn": 3,
+        "interviewer": "What types of data will users be submitting through these forms—for example, are they entering personal information, financial records, inventory items, or something else?",
+        "user": "I'm not sure about the specific types of data users will be submitting yet. Could you ask a more specific question about the data requirements, or perhaps propose some common data categories for a personal portfolio site that I could react to?",
+        "action_type": "probe",
+        "is_relevant_to_url": false,
+        "elicitation_ratio": 0.75,
+        "hit_requirement_ids": []
+      }
+    ],
+    "final_metrics": {
+      "IRE": 0.75,
+      "TKQR": 0.818182,
+      "approx_ESR": 0.666667,
+      "turns": 3,
+      "hit_count": 3,
+      "total_implicit_requirements": 4,
+      "type_coverage": {
+        "interaction": 0.5,
+        "content": 0.0,
+        "style": 1.0
+      },
+      "early_finish": false,
+      "evaluator_note": "approx_ESR is computed from turn-level action labels and hit results; ReqElicitGym source did not expose a standalone ESR metric.",
+      "duplicate_question_rate": 0.0,
+      "broad_question_rate": 0.0,
+      "unanswered_or_invalid_question_rate": 0.0
+    },
+    "trace_dir": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\runs\\ReqAHE-evolved_reahe-glm-5.1-20260605-212837\\iteration_002\\rollout\\train_000483__r0"
+  }
+]

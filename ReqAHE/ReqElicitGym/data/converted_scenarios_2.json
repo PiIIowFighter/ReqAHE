@@ -1,0 +1,1480 @@
+[
+  {
+    "id": "train_000584",
+    "name": "train_000584",
+    "application_type": "CRM Systems",
+    "initial_requirements": "I need a mobile sales application for managing customers and business opportunities.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to log in to the application to access the sales management features securely."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to manage call plans to organize and schedule customer calls effectively."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to perform electronic signings to complete agreements digitally without physical paperwork."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to receive message reminders to stay informed about important tasks and updates."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the page background to be salmon."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all components to be colored crimson."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in to the application, so that I can access the sales management features securely.",
+      "As a user, I want to browse customer information, so that I can view and manage customer data.",
+      "As a user, I want to browse business opportunity information, so that I can track and manage business opportunities.",
+      "As a user, I want to manage call plans, so that I can organize and schedule customer calls effectively.",
+      "As a user, I want to perform electronic signings, so that I can complete agreements digitally without physical paperwork.",
+      "As a user, I want to receive message reminders, so that I can stay informed about important tasks and updates.",
+      "As a user, I want the page background to be salmon, so that the application has a consistent visual appearance.",
+      "As a user, I want all components to be colored crimson, so that the interface elements are visually consistent."
+    ]
+  },
+  {
+    "id": "train_002706",
+    "name": "train_002706",
+    "application_type": "Company Brochure Sites",
+    "initial_requirements": "I need an animated, responsive WordPress website to display company information and products, with a user login feature.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the website to consist of 8 specific pages: home, about us, services, products, news, contact us, FAQ, and login/registration."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the body backgrounds to be antique white."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the main components to be sienna."
+      }
+    ],
+    "URL": [
+      "As a user, I want the website to have 8 pages including home, about us, services, products, news, contact us, FAQ, and login/registration, so that the site content is organized into specific sections.",
+      "As a user, I want to browse the website and navigate to different pages, so that I can access the information I need.",
+      "As a user, I want to view animations on the website, so that the browsing experience is engaging and dynamic.",
+      "As a user, I want the website to have a responsive design to adapt to different devices and screen sizes, so that I can view the content correctly on any device.",
+      "As a user, I want the body backgrounds to be antique white, so that the website has the intended visual appearance.",
+      "As a user, I want the main components to be sienna, so that the website has the intended visual appearance."
+    ]
+  },
+  {
+    "id": "train_004658",
+    "name": "train_004658",
+    "application_type": "Internal Tools",
+    "initial_requirements": "I need a web-based control panel for an animated eyes display that allows users to connect to the device and select animation modes.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to connect to the animated eyes display via WiFi."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to select from multiple animation modes including static and dynamic frames."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect the system to run efficiently without buffering issues."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect an intuitive setup and operation experience."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the web control panel to have a pale ash background and slate gray components."
+      }
+    ],
+    "URL": [
+      "As a user, I want to connect to the animated eyes display via WiFi, so that I can access and control the display remotely.",
+      "As a user, I want to select from multiple animation modes including static and dynamic frames, so that I can customize the display behavior according to my preferences.",
+      "As a user, I want the system to run efficiently without buffering issues, so that the animated eyes display operates smoothly.",
+      "As a user, I want an intuitive setup and operation experience for the animated eyes display, so that I can easily configure and use the system without technical difficulties.",
+      "As a user, I want the web control panel background to be pale ash, so that the interface has a consistent and pleasant appearance.",
+      "As a user, I want the web control panel components to use slate gray color, so that the interface is visually cohesive."
+    ]
+  },
+  {
+    "id": "train_000848",
+    "name": "train_000848",
+    "application_type": "Analytics Platforms/Dashboards",
+    "initial_requirements": "I need a data visualization website that allows users to interact with data and customize the display style.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to browse different types of data and select different visualization methods to interact with the data."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to customize the layout of the data display."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect the data to update in real-time without manual refresh."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website to use light salmon as the base color and tomato color for components."
+      }
+    ],
+    "URL": [
+      "As a user, I want to browse different types of data, so that I can explore and access various datasets available on the website.",
+      "As a user, I want to select different visualization methods, so that I can view data in the format that best suits my analysis needs.",
+      "As a user, I want to customize the style and layout of the data display, so that I can personalize how the data is presented to me.",
+      "As a user, I want to update the data in real-time, so that I can always see the most current information without manual refresh.",
+      "As a user, I want the website to use light salmon as the base color, so that the interface has a consistent and pleasant appearance.",
+      "As a user, I want all components to use tomato color, so that the interface elements are visually consistent and distinguishable."
+    ]
+  },
+  {
+    "id": "train_001515",
+    "name": "train_001515",
+    "application_type": "Browser-Based Games",
+    "initial_requirements": "I need a mini-program for personality Q&A tests where users can play games and view results, with a backend to manage the content.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the test results to be generated based on the answers I provide during the game."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to be able to configure the theme of the mini-program to customize its look and feel."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the mini-program to use 'old lace' as the default background for a warm appearance."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the interface components to use 'tan' color styling for visual consistency."
+      }
+    ],
+    "URL": [
+      "As a user, I want to browse different Q&A games, so that I can find a personality test I'm interested in.",
+      "As a user, I want to participate in Q&A games, so that I can test my personality.",
+      "As a user, I want to view my test results based on my answers, so that I can understand my personality outcome.",
+      "As a backend administrator, I want to configure the content of Q&A games, so that I can provide varied personality tests for users.",
+      "As a backend administrator, I want to configure the theme of the mini-program, so that the mini-program can have a customized look and feel.",
+      "As a user, I want the mini-program to use old lace as the default background, so that the interface has a warm appearance.",
+      "As a user, I want the components to use tan color styling, so that the interface is visually consistent."
+    ]
+  },
+  {
+    "id": "train_000387",
+    "name": "train_000387",
+    "application_type": "Email Clients",
+    "initial_requirements": "I need a web-based instant messaging client that allows users to send and receive text messages and view contact information.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to log in to access the instant messaging website."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to view a contact list that displays user status and availability."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the layout to be ice blue."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer buttons and cards to be teal."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in, so that I can access the instant messaging website.",
+      "As a user, I want to view my contact list, so that I can see who is available to chat.",
+      "As a user, I want to send and receive text messages, so that I can communicate with my contacts.",
+      "As a user, I want to view user status and information, so that I can check the availability and details of other users.",
+      "As a user, I want the layout to be ice blue, so that the website has a specific visual appearance.",
+      "As a user, I want buttons and cards to be teal, so that the interface elements are visually consistent."
+    ]
+  },
+  {
+    "id": "train_001373",
+    "name": "train_001373",
+    "application_type": "Publishing/Blogging Platforms",
+    "initial_requirements": "I need a webpage with pagination to display and navigate through content across multiple pages.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to navigate using page number buttons for direct switching and first, previous, next, and last buttons for sequential navigation."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to see the current page number and total number of pages displayed."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to choose the number of items to display per page."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the canvas background to be pale rose."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all visible components to be maroon."
+      }
+    ],
+    "URL": [
+      "As a user, I want to view content displayed across multiple pages with pagination, so that I can browse large amounts of content efficiently.",
+      "As a user, I want to click on page number buttons to switch between different pages, so that I can navigate directly to specific pages.",
+      "As a user, I want to use first page, previous page, next page, and last page buttons, so that I can navigate sequentially through the content.",
+      "As a user, I want to see the current page number and total number of pages displayed, so that I know my current position within the paginated content.",
+      "As a user, I want to choose the number of items to display per page, so that I can customize the content display to my preference.",
+      "As a user, I want the canvas background to be pale rose, so that the interface has a visually appealing appearance.",
+      "As a user, I want all visible components to be maroon, so that the interface has a consistent color scheme."
+    ]
+  },
+  {
+    "id": "train_000697",
+    "name": "train_000697",
+    "application_type": "Learning Platforms",
+    "initial_requirements": "I need a website for Python resources and tutorials where users can find and explore content, and share their feedback.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to find resources by browsing through categories or searching for specific items."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to view detailed information about each resource to understand what it offers."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to share my feedback by rating resources and leaving comments."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website's outer layout to use thistle color and UI blocks to use medium purple color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to browse Python resources by category, so that I can find resources organized by topic.",
+      "As a user, I want to search for specific resources, so that I can quickly find the Python tutorials or resources I need.",
+      "As a user, I want to view resource details, so that I can understand what each resource offers.",
+      "As a user, I want to rate resources, so that I can share my evaluation of resource quality.",
+      "As a user, I want to comment on resources, so that I can provide feedback or discuss the content with others.",
+      "As a user, I want the outer layout to use thistle color, so that the website has a consistent visual appearance.",
+      "As a user, I want the UI blocks to use medium purple color, so that the interface elements are visually distinct and consistent."
+    ]
+  },
+  {
+    "id": "train_000458",
+    "name": "train_000458",
+    "application_type": "Social Media Platforms",
+    "initial_requirements": "I need a Weibo Q&A website where fans can pay to ask questions to bloggers and others can pay to view the answers.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to ask questions on a blogger's personal page or in a Weibo post."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to receive a notification when the blogger answers my question."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to receive a refund to my account if the blogger does not answer within 72 hours."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the viewing fee to be 1 yuan, and the revenue to be distributed equally between the blogger and the questioning fan."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website background color to be linen white."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website components to use burlywood color."
+      }
+    ],
+    "URL": [
+      "As a fan, I want to ask questions on a blogger's personal page or in a Weibo post, so that I can interact with the blogger in different contexts.",
+      "As a fan, I want to pay the corresponding fee when asking a question, so that the blogger receives and can respond to my question.",
+      "As a blogger, I want to receive and answer questions from fans, so that I can engage with my audience and earn the corresponding revenue.",
+      "As a fan, I want to receive a notification when the blogger answers my question, so that I can view the answer promptly.",
+      "As a fan, I want to receive a refund to my account if the blogger does not answer within 72 hours, so that I am protected if my question is not addressed.",
+      "As a fan, I want to pay 1 yuan to view a blogger's answer to another fan's question, so that I can access valuable content.",
+      "As a blogger, I want to receive half of the viewing revenue when other fans pay to view my answer, so that I am compensated for my content.",
+      "As a questioning fan, I want to receive half of the viewing revenue when other fans pay to view the answer, so that I can earn from my question investment.",
+      "As a user, I want the website background color to be linen white, so that the interface is visually comfortable.",
+      "As a user, I want the website components to use burlywood color, so that the interface has a consistent and appealing design."
+    ]
+  },
+  {
+    "id": "train_001857",
+    "name": "train_001857",
+    "application_type": "Project Management Tools",
+    "initial_requirements": "I need a Docker-based website for developing and testing PHP applications with tools to manage projects and code.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to configure specific Docker-based environment settings for my projects."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to manage configuration files to customize project settings and parameters."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the platform to provide tools for managing databases and debugging applications."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the layout to use light salmon color and buttons and cards to use tomato color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in to the website, so that I can securely access my PHP development environment.",
+      "As a user, I want to create new PHP projects, so that I can start developing PHP applications.",
+      "As a user, I want to manage my PHP projects, so that I can organize and maintain my development work.",
+      "As a user, I want to configure project environments, so that I can set up the appropriate Docker-based development settings for my projects.",
+      "As a user, I want to manage configuration files, so that I can customize project settings and parameters.",
+      "As a user, I want to manage databases, so that I can handle data storage for my PHP applications.",
+      "As a user, I want to write and run code, so that I can develop and test my PHP applications.",
+      "As a user, I want to debug applications, so that I can identify and fix issues in my code.",
+      "As a user, I want the layout to use light salmon color, so that the interface has a consistent and pleasant appearance.",
+      "As a user, I want buttons and cards to use tomato color, so that interactive elements are visually distinct and identifiable."
+    ]
+  },
+  {
+    "id": "train_000529",
+    "name": "train_000529",
+    "application_type": "Travel Booking Portals",
+    "initial_requirements": "I need a hotel calendar widget that allows users to select check-in and check-out dates, view room availability, and filter rooms.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to select check-in and check-out dates using a calendar view."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to sort rooms in addition to filtering them."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the primary background to be beige."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the elements to be brown."
+      }
+    ],
+    "URL": [
+      "As a user, I want to select check-in and check-out dates using a calendar view, so that I can specify my booking duration.",
+      "As a user, I want to view room availability within the widget, so that I can see which rooms are open for booking.",
+      "As a user, I want to filter and sort rooms based on my needs, so that I can find the most suitable accommodations.",
+      "As a user, I want the primary background to be beige, so that the interface has a specific visual style.",
+      "As a user, I want the elements to be brown, so that the interface components are visually consistent."
+    ]
+  },
+  {
+    "id": "train_003219",
+    "name": "train_003219",
+    "application_type": "E-commerce Web Applications",
+    "initial_requirements": "I need a tea culture e-commerce platform for selling tea leaves and utensils that also provides related information and user management.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the tea culture information to include tea types, effects, and taboos."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the platform to use light yellow as the base color."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all platform components to use dark khaki color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to browse tea culture-related information including tea types, effects, and taboos, so that I can learn about tea knowledge and usage guidelines.",
+      "As a user, I want to purchase tea leaves and tea utensils on the platform, so that I can buy the tea-related products I need.",
+      "As a user, I want to manage my account information, so that I can keep my personal details up to date.",
+      "As a user, I want the platform to use light yellow as the base color, so that the interface presents a consistent visual theme.",
+      "As a user, I want all platform components to use dark khaki color, so that the interface elements are visually consistent."
+    ]
+  },
+  {
+    "id": "train_000386",
+    "name": "train_000386",
+    "application_type": "Email Clients",
+    "initial_requirements": "I need a mobile WAP website that allows users to access email servers and manage their emails.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the email system to organize emails into specific folders including Inbox, Sent Box, and Draft Box."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to be able to configure my email account settings and personal information."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website to have a glacier blue global background."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all website components to use a royal blue color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in to the email website, so that I can securely access my email account.",
+      "As a user, I want to view my inbox, sent box, and draft box, so that I can access and manage my emails in different folders.",
+      "As a user, I want to send new emails, so that I can communicate with others.",
+      "As a user, I want to delete unwanted emails, so that I can keep my mailbox organized.",
+      "As a user, I want to set up my email account information, so that I can customize my account settings.",
+      "As a user, I want the website to have a glacier blue global background, so that the interface has a consistent and pleasant appearance.",
+      "As a user, I want all website components to use royal blue color, so that the interface is visually consistent."
+    ]
+  },
+  {
+    "id": "train_000539",
+    "name": "train_000539",
+    "application_type": "Personal Blog Sites",
+    "initial_requirements": "I need a website that allows users to view and manage data with real-time updates.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect the website to have error handling and debugging capabilities to ensure system stability and security."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website background to be light beige."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website components to use sienna as the color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to browse the website and view data, so that I can access and read the information stored in the system.",
+      "As a user, I want to input and update data, so that I can interact with the website and modify the stored information.",
+      "As a user, I want the website to display results in real-time, so that I can see the immediate outcome of my interactions.",
+      "As a user, I want the website to have error handling and debugging capabilities, so that the system remains stable and secure during usage.",
+      "As a user, I want the website background to be light beige, so that the interface follows the intended visual design.",
+      "As a user, I want the website components to use sienna as the color, so that the interface appearance is consistent with the theme."
+    ]
+  },
+  {
+    "id": "train_004185",
+    "name": "train_004185",
+    "application_type": "E-commerce Web Applications",
+    "initial_requirements": "I need a WeChat mini-program for selling products that supports marketing activities and a distribution system.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the marketing activities to include coupons, group buying, flash sales, and point level tracking."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect the product selling process to support a shopping cart for collecting items and value storage functionality for managing funds."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the distribution system to provide distribution agency information."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the mini-program to have a ghost white background color and cadet blue interface elements."
+      }
+    ],
+    "URL": [
+      "As a user, I want to browse and view product displays, so that I can find items I wish to purchase.",
+      "As a user, I want to add products to a shopping cart, so that I can collect items before placing an order.",
+      "As a user, I want to place orders, so that I can purchase the selected products.",
+      "As a user, I want to use value storage functionality, so that I can store and manage funds within the mini-program.",
+      "As a user, I want to use coupons, so that I can receive discounts on my purchases.",
+      "As a user, I want to participate in group buying activities, so that I can purchase products at group rates.",
+      "As a user, I want to participate in flash sales, so that I can access time-limited promotional offers.",
+      "As a user, I want to view my point levels, so that I can track my loyalty status or rewards.",
+      "As a user, I want to view distribution agency information, so that I can see details regarding my distribution activities.",
+      "As a user, I want the mini-program background color to be ghost white, so that the interface has a clean and consistent appearance.",
+      "As a user, I want all interface elements to be colored cadet blue, so that the visual design is consistent throughout the application."
+    ]
+  },
+  {
+    "id": "train_001120",
+    "name": "train_001120",
+    "application_type": "Personal Portfolio Sites",
+    "initial_requirements": "I need an online photo gallery system for managing pictures and sharing albums with other users.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to log in to access my personal account."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to organize pictures by editing their information and categorizing them."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to create albums to group related pictures together."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the global background color to be old lace."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all UI pieces to be tan."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in, so that I can access my personal account and manage my content.",
+      "As a user, I want to browse pictures, so that I can view the content in the gallery.",
+      "As a user, I want to upload pictures, so that I can add my photos to the system.",
+      "As a user, I want to delete pictures and edit picture information, so that I can manage my own pictures.",
+      "As a user, I want to categorize pictures, so that I can organize them effectively.",
+      "As a user, I want to create albums, so that I can group related pictures together.",
+      "As a user, I want to share albums with other users, so that I can allow others to view my collections.",
+      "As a user, I want the global background color to be old lace, so that the interface has a consistent appearance.",
+      "As a user, I want all UI pieces to be tan, so that the visual design is uniform."
+    ]
+  },
+  {
+    "id": "train_002207",
+    "name": "train_002207",
+    "application_type": "Project Management Tools",
+    "initial_requirements": "I need a health station management website to handle isolation point information, personnel registration, and accommodation arrangements.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to log in to the website to securely access the health station management system."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the layout background to be ivory."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the component details to be chocolate colored."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in to the website, so that I can securely access the health station management system.",
+      "As a user, I want to browse isolation point information, so that I can view details about available isolation points.",
+      "As a user, I want to register personnel information, so that I can maintain accurate records of individuals at isolation points.",
+      "As a user, I want to arrange accommodations, so that I can assign appropriate lodging for personnel at isolation points.",
+      "As a user, I want to manage related information for isolation points, so that I can keep isolation point data current and organized.",
+      "As a user, I want the layout background to be ivory, so that the interface has a clean and professional appearance.",
+      "As a user, I want the component details to be chocolate colored, so that the interface elements are visually distinct and consistent."
+    ]
+  },
+  {
+    "id": "train_000960",
+    "name": "train_000960",
+    "application_type": "Productivity Applications",
+    "initial_requirements": "I need a mobile application with an intuitive interface that supports search functionality and personalized settings.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the application to integrate with APIs to support new features and external data."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the primary background to be morning mist."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the elements to be navy."
+      }
+    ],
+    "URL": [
+      "As a user, I want the application to integrate with APIs, so that the application can support new features and external data.",
+      "As a user, I want improved navigation functions, so that I can move through the application efficiently.",
+      "As a user, I want search functions, so that I can find specific content quickly.",
+      "As a user, I want a clear layout and intuitive operation, so that I can easily browse and use the application.",
+      "As a user, I want personalized settings and customization options, so that the application meets my specific needs.",
+      "As a user, I want the primary background to be morning mist, so that the interface has a pleasant visual appearance.",
+      "As a user, I want the elements to be navy, so that the interface components are visually consistent."
+    ]
+  },
+  {
+    "id": "train_000305",
+    "name": "train_000305",
+    "application_type": "Learning Platforms",
+    "initial_requirements": "I need a cultural cloud website for digital construction and operation that provides various cultural services like appointments, exhibitions, and live broadcasts, and supports data analysis and branch management.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to be able to log in to the website to access personalized services and features."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the website to provide cloud training, cloud ticketing, and cloud distribution services in addition to the initially mentioned services."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the body background to be opal and the UI components to be indigo."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in to the website, so that I can access personalized services and features.",
+      "As a user, I want to browse digital services provided by cultural centers, so that I can discover available cultural offerings.",
+      "As a user, I want to make appointments and participate in activities through cloud appointment services, so that I can schedule and attend cultural events.",
+      "As a user, I want to watch live broadcasts through cloud live broadcast services, so that I can participate in cultural events remotely in real-time.",
+      "As a user, I want to browse exhibitions through cloud exhibition services, so that I can explore cultural content and displays digitally.",
+      "As a user, I want to participate in training through cloud training services, so that I can learn and develop skills through cultural center offerings.",
+      "As a user, I want to purchase tickets through cloud ticketing services, so that I can attend cultural events and activities.",
+      "As a user, I want to access cloud distribution services, so that I can utilize digital distribution capabilities.",
+      "As a user, I want to access cultural big data analysis functions, so that I can gain insights from cultural data.",
+      "As a user, I want to access total branch management functions, so that I can manage cultural center operations across branches.",
+      "As a user, I want the body background to be opal, so that the website has a pleasant visual appearance.",
+      "As a user, I want the UI components to use indigo color, so that the interface is visually consistent."
+    ]
+  },
+  {
+    "id": "train_000131",
+    "name": "train_000131",
+    "application_type": "News and Information Sites",
+    "initial_requirements": "I need a sidebar on the website that displays expert information from external sources.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect the sidebar to be displayed on all article pages."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the sidebar to display real-time expert information including the expert's avatar, name, bio, and contact information."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to click on the expert information in the sidebar to navigate to the expert's detailed page."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect the sidebar to not conflict with other elements on the website."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the sidebar background color to be light pink and the component color to be hotpink."
+      }
+    ],
+    "URL": [
+      "As a user, I want a sidebar showing expert information on all article pages, so that I can access expert details while reading articles.",
+      "As a user, I want the sidebar to display real-time expert information from other websites including the expert's avatar, name, bio, and contact information, so that I can see current and comprehensive expert details.",
+      "As a user, I want to click on the expert information in the sidebar to navigate to the expert's detailed page, so that I can view more information about the expert.",
+      "As a user, I want the sidebar to not conflict with other elements on the website, so that I have a smooth user experience.",
+      "As a user, I want the sidebar background color to be light pink, so that the interface is visually appealing.",
+      "As a user, I want the sidebar component color to be hotpink, so that the interface is visually consistent."
+    ]
+  },
+  {
+    "id": "train_001012",
+    "name": "train_001012",
+    "application_type": "News and Information Sites",
+    "initial_requirements": "I need a website that visualizes Douban movie Top10 rankings and review data for users to explore and analyze.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to explore the data by performing filtering and sorting operations."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to view detailed movie information for each movie."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to analyze review statistics to understand patterns and trends."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the body background to be light cyan."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the main components to be teal."
+      }
+    ],
+    "URL": [
+      "As a user, I want to browse movie rankings, so that I can see the Douban movie Top10 list.",
+      "As a user, I want to view detailed movie information, so that I can learn more about each movie.",
+      "As a user, I want to analyze review statistics, so that I can understand review patterns and trends.",
+      "As a user, I want to perform data filtering and sorting, so that I can find movies based on my preferences.",
+      "As a user, I want the body background to be light cyan, so that the website has a pleasant visual appearance.",
+      "As a user, I want the main components to be teal, so that the interface has a consistent and appealing design."
+    ]
+  },
+  {
+    "id": "train_001065",
+    "name": "train_001065",
+    "application_type": "Discussion Forums",
+    "initial_requirements": "I need a mini-program that allows parents to access school information and policy interpretations, while also providing a forum for discussion and policy updates.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I need to log in to access the mini-program functionalities."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to query policy interpretations to understand specific policies."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to obtain the latest policy recommendations to stay updated on new policies."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the global background color to be light coral."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all UI pieces to be indian red."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in, so that I can access the mini-program functionalities.",
+      "As a user, I want to browse information about different schools, so that I can find relevant school details.",
+      "As a user, I want to query policy interpretations, so that I can understand specific policies.",
+      "As a user, I want to participate in parent forum discussions, so that I can communicate with other parents.",
+      "As a user, I want to obtain the latest policy recommendations, so that I can stay updated on new policies.",
+      "As a user, I want the global background color to be light coral, so that the interface has a consistent visual theme.",
+      "As a user, I want all UI pieces to be indian red, so that the interface components are visually consistent."
+    ]
+  },
+  {
+    "id": "train_001083",
+    "name": "train_001083",
+    "application_type": "ERP Platforms",
+    "initial_requirements": "I need an enterprise resource planning backend system for managing internal company data and user permissions, with the ability to import and export data.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to manage user accounts in addition to managing permissions."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to view a list of functional modules to navigate the system."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to import and export data using Excel files."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the screen background to be alabaster."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the components to use dark cyan for highlights."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in to the system, so that I can securely access the enterprise resource planning backend management system.",
+      "As a user, I want to manage users, so that I can control user accounts in the system.",
+      "As a user, I want to manage permissions, so that I can control access rights for different users.",
+      "As a user, I want to view module lists, so that I can see and navigate to different functional modules.",
+      "As a user, I want to browse data in different modules, so that I can access internal company data across various categories.",
+      "As a user, I want to add new data, so that I can create new records in the system.",
+      "As a user, I want to edit existing data, so that I can update records when information changes.",
+      "As a user, I want to delete unnecessary data, so that I can remove outdated or irrelevant records.",
+      "As a user, I want to display all data, so that I can view the complete set of records in each module.",
+      "As a user, I want to import and export data via Excel, so that I can conveniently perform batch data operations.",
+      "As a user, I want the screen background to be alabaster, so that the interface has a clean and consistent appearance.",
+      "As a user, I want the components to use dark cyan for highlights, so that the interface has a consistent visual style."
+    ]
+  },
+  {
+    "id": "train_000515",
+    "name": "train_000515",
+    "application_type": "News Aggregators",
+    "initial_requirements": "I need a news sharing application that rewards users for sharing news and allows them to view their earnings and rankings.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to share news specifically to WeChat groups."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the application to track clicks and calculate earnings based on my sharing activity."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to view the clicks generated by my shares and a detailed breakdown of my earnings."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the application background color to be navajo white."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the component color to be tan."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in, so that I can access the news sharing application.",
+      "As a user, I want to browse news, so that I can find articles to read and share.",
+      "As a user, I want to share news to WeChat groups, so that I can distribute content and earn rewards.",
+      "As a user, I want the application to track clicks and calculate earnings, so that my sharing activity is accurately recorded and rewarded.",
+      "As a user, I want to view the clicks and earnings generated by my shares, so that I can monitor my performance.",
+      "As a user, I want to view user rankings, so that I can compare my performance with others.",
+      "As a user, I want to view earnings details, so that I can understand the breakdown of my income.",
+      "As a user, I want the application background color to be navajo white, so that the interface has the specified visual style.",
+      "As a user, I want the component color to be tan, so that the interface elements are visually consistent."
+    ]
+  },
+  {
+    "id": "train_001132",
+    "name": "train_001132",
+    "application_type": "Job Search Platforms",
+    "initial_requirements": "I need an app for freelancers to showcase their services and manage client bookings.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to include my availability in my profile to showcase when I can be booked."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to manage bookings by accepting, declining, or canceling appointments."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to view booking history and freelancer reviews."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the screen background to be frost white."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer component highlights to be charcoal."
+      }
+    ],
+    "URL": [
+      "As a freelancer, I want to create a profile to showcase my services and availability, so that clients can find and book me.",
+      "As a client, I want to browse freelancers' services, select a service, and book an appointment, so that I can secure the services I need.",
+      "As a freelancer, I want to manage my bookings by accepting, declining, or canceling appointments, so that I can control my schedule.",
+      "As a client, I want to view my booking history and freelancer reviews, so that I can track my past activities and assess service quality.",
+      "As a user, I want the screen background to be frost white, so that the interface is clean and visually appealing.",
+      "As a user, I want component highlights to be charcoal, so that the interface elements are clearly defined."
+    ]
+  },
+  {
+    "id": "train_006077",
+    "name": "train_006077",
+    "application_type": "Publishing/Blogging Platforms",
+    "initial_requirements": "I need a website editing system where users can edit and manage their own web page content.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to switch to an edit mode to start editing my web pages."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to edit web page content that includes text, images, and other media."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to preview edited web pages to see how changes will look before finalizing."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the layout background to be moccasin and interactive elements to be sandy brown."
+      }
+    ],
+    "URL": [
+      "As a user, I want to switch to edit mode, so that I can easily edit my own web pages.",
+      "As a user, I want to browse and edit web page content including text, images, and other media, so that I can modify my website as needed.",
+      "As a user, I want to save edited web pages, so that my changes are preserved.",
+      "As a user, I want to preview edited web pages, so that I can see how my changes will look before finalizing.",
+      "As a user, I want the layout background to be moccasin, so that the interface has a consistent and pleasant appearance.",
+      "As a user, I want interactive elements to be sandy brown, so that they are visually distinct and easy to identify."
+    ]
+  },
+  {
+    "id": "train_006560",
+    "name": "train_006560",
+    "application_type": "Streaming and Interactive Platforms",
+    "initial_requirements": "I need a personal cloud album website for generating and managing videos, which supports media uploads and provides security monitoring and optimization suggestions.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to add visual effects to videos to enhance visual quality."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to upload images, videos, and audio files as supported media types."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect the security monitoring to involve automatic file detection and to collect both manual and AI monitoring results."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website background to be light beige."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website components to use sienna color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to generate videos, so that I can create video content for my personal cloud album.",
+      "As a user, I want to add visual effects to videos, so that I can enhance the visual quality of my video content.",
+      "As a user, I want to upload images, videos, and audio files, so that I can store and manage all my media assets in the cloud album.",
+      "As a user, I want the system to automatically detect file security and monitor uploaded files, so that my media assets are protected from security threats.",
+      "As a user, I want the system to collect manual and AI monitoring results, so that I have comprehensive oversight of file monitoring activities.",
+      "As a user, I want the system to provide optimization suggestions, so that I can improve the quality and performance of my media files.",
+      "As a user, I want the website background to be light beige, so that the interface has a warm and comfortable appearance.",
+      "As a user, I want the website components to use sienna color, so that the interface has a consistent and visually appealing design."
+    ]
+  },
+  {
+    "id": "train_002654",
+    "name": "train_002654",
+    "application_type": "Company Brochure Sites",
+    "initial_requirements": "I need a WeChat public account for Siemens Home Stores that provides store information and navigation services.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to authorize the use of related services to access the store information and navigation features."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to view nearby stores to find the most convenient Siemens Home Store location."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the public account to have a champagne background color."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all elements to use burnt sienna color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to authorize the use of related services, so that I can access the store information and navigation features.",
+      "As a user, I want to browse store information, so that I can learn about Siemens Home Store details.",
+      "As a user, I want to view nearby stores, so that I can find the most convenient Siemens Home Store location.",
+      "As a user, I want to get route navigation, so that I can easily find my way to a Siemens Home Store.",
+      "As a user, I want the public account to have a champagne background color, so that the interface has a consistent and appealing appearance.",
+      "As a user, I want all elements to use burnt sienna color, so that the interface has a consistent visual style."
+    ]
+  },
+  {
+    "id": "train_000517",
+    "name": "train_000517",
+    "application_type": "Travel Booking Portals",
+    "initial_requirements": "I need a WeChat mini-program for travel planning that supports route planning, trip cost estimation, and car rental services.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to use a map API to plan routes."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the system to calculate trip distances and estimated times."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to submit trip distance and number of passengers to calculate trip prices."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to browse different types of vehicles and view rental prices and related information."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the screen background to be light salmon and the components to use coral color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to use the mini-program's map API to plan routes, so that I can determine my travel path.",
+      "As a user, I want to calculate trip distances and estimated times, so that I can understand the scope of my journey.",
+      "As a user, I want to submit trip distance and number of passengers to calculate prices, so that I can estimate my trip costs.",
+      "As a user, I want to browse different types of vehicles, so that I can find a suitable car for my trip.",
+      "As a user, I want to select car rental services and view rental prices and related information, so that I can make informed decisions about car rentals.",
+      "As a user, I want the screen background to be light salmon, so that the interface has a pleasant appearance.",
+      "As a user, I want the components to use coral color for highlights, so that the interface elements are visually distinct."
+    ]
+  },
+  {
+    "id": "train_001064",
+    "name": "train_001064",
+    "application_type": "Discussion Forums",
+    "initial_requirements": "I need a website for the Lei Feng Wisdom Community to manage members and display community information, with a point reward system.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the community information to include introductions, news, events, and community dynamics."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I want to register as a community member."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I want to participate in community events."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to be able to view my personal point records."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website to have a light sky blue background and the UI components to use deepskyblue color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to view community introductions, so that I can learn about the Lei Feng Wisdom Community.",
+      "As a user, I want to browse community news, so that I can stay informed about community updates.",
+      "As a user, I want to view community events, so that I can know what activities are available.",
+      "As a user, I want to register as a community member, so that I can participate in community activities.",
+      "As a user, I want to browse community dynamics, so that I can stay updated on community activities.",
+      "As a user, I want to participate in events, so that I can engage with the community.",
+      "As a user, I want to receive point rewards, so that I can be recognized for my participation.",
+      "As a user, I want to view my personal point records, so that I can track my rewards history.",
+      "As a user, I want to manage community members, so that I can maintain membership records.",
+      "As a user, I want to manage point rewards, so that I can administer the reward system.",
+      "As a user, I want the website to have a light sky blue background, so that the interface is visually appealing.",
+      "As a user, I want the UI components to use deepskyblue color, so that the interface is consistent."
+    ]
+  },
+  {
+    "id": "train_006509",
+    "name": "train_006509",
+    "application_type": "Social Media Platforms",
+    "initial_requirements": "I need a pet community platform that combines article sharing, group discussions, and a marketplace for pet products.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to attach product information to my articles so that other users can order the products I recommend."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to create circles with other users to facilitate group discussions."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the marketplace to include products from both official self-operated and third-party stores."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I want to participate in official lottery activities to have a chance to win prizes."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the page background to be vanilla and the elements to use dark goldenrod color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to publish pet-related articles and attach product information, so that other users can easily order the products I recommend.",
+      "As a user, I want to create circles with other users, so that we can discuss pet-related content together.",
+      "As a user, I want to browse products from official self-operated and third-party stores, so that I can find and compare pet products.",
+      "As a user, I want to purchase products from the pet mall, so that I can get the pet supplies I need.",
+      "As a user, I want to participate in official lottery activities, so that I can have a chance to win prizes.",
+      "As a user, I want the page background to be vanilla, so that the interface has a warm and comfortable appearance.",
+      "As a user, I want the elements to use dark goldenrod color, so that the interface has a consistent and appealing visual style."
+    ]
+  },
+  {
+    "id": "train_000744",
+    "name": "train_000744",
+    "application_type": "Internal Tools",
+    "initial_requirements": "I need a web-based tool that helps users collect and process data from webpages.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to input a webpage address and select the specific data to be collected."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer the tool to automatically extract the selected data."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the processed data to be organized and ready for use."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect the tool to display the processed results."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website to use pale turquoise as the background color and medium turquoise for content blocks."
+      }
+    ],
+    "URL": [
+      "As a user, I want to input a webpage address, so that the tool knows which webpage to scrape.",
+      "As a user, I want to select the data to be collected from the webpage, so that I can extract only the relevant information I need.",
+      "As a user, I want the tool to automatically extract the selected data from the webpage, so that I can collect web data efficiently without manual effort.",
+      "As a user, I want the tool to process the extracted data, so that the data is organized and ready for use.",
+      "As a user, I want the tool to display the processed results, so that I can view and use the collected data.",
+      "As a user, I want the website to use pale turquoise as the background color, so that the interface has a consistent and pleasant visual appearance.",
+      "As a user, I want the content blocks to use medium turquoise color, so that the interface elements are visually distinct and consistent."
+    ]
+  },
+  {
+    "id": "train_000104",
+    "name": "train_000104",
+    "application_type": "Productivity Applications",
+    "initial_requirements": "I need a web application to browse and save sheet music images as PDF files for easy access and printing.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to preview and manage my saved sheet music images to organize my collection."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the application to have a lemon chiffon background color."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the components to use olive color styling."
+      }
+    ],
+    "URL": [
+      "As a user, I want to browse and select sheet music images, so that I can find and choose the ones I want to save.",
+      "As a user, I want to save selected images in PDF format, so that I can easily access and print them.",
+      "As a user, I want to preview saved images, so that I can view the sheet music I have saved.",
+      "As a user, I want to manage saved images, so that I can organize and maintain my collection.",
+      "As a user, I want the application to have a lemon chiffon background color, so that the interface has a pleasant appearance.",
+      "As a user, I want the components to use olive color styling, so that the interface is visually consistent."
+    ]
+  },
+  {
+    "id": "train_000536",
+    "name": "train_000536",
+    "application_type": "Personal Blog Sites",
+    "initial_requirements": "I need a multi-language blog website for Spanish and Portuguese speaking countries where users can read and engage with articles.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to post articles and organize them using categories and tags."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to browse and search for articles to find specific content of interest."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to post comments on articles to engage in discussions."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to subscribe to blog updates to receive notifications about new content."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the main background to be aquamarine and the controls to be dark turquoise."
+      }
+    ],
+    "URL": [
+      "As a user, I want to post articles, so that I can share content with readers.",
+      "As a user, I want to organize articles using categories and tags, so that the content is structured and easy to find.",
+      "As a user, I want to browse and search for articles, so that I can find specific content of interest.",
+      "As a user, I want to post comments on articles, so that I can engage in discussions.",
+      "As a user, I want to subscribe to blog updates, so that I can receive notifications about new content.",
+      "As a user, I want the website to support Spanish and Portuguese languages, so that I can access content in my preferred language.",
+      "As a user, I want the main background to be aquamarine, so that the website has the intended visual appearance.",
+      "As a user, I want the controls to be dark turquoise, so that the interface elements are visually consistent."
+    ]
+  },
+  {
+    "id": "train_000867",
+    "name": "train_000867",
+    "application_type": "Analytics Platforms/Dashboards",
+    "initial_requirements": "I need a rain gauge website for collecting and displaying data, allowing users to log in to query information and set collection parameters.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the rain gauge data to be stored in a MySQL database."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the overall website background to be gold."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website components to be styled with dark goldenrod."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in to the website, so that I can access the rain gauge system securely.",
+      "As a user, I want to view collected database information, so that I can see the rain gauge data stored in the MySQL database.",
+      "As a user, I want to query specific information from the database, so that I can find the data I need.",
+      "As a user, I want to set parameters for data collection, so that I can customize how rain gauge data is collected.",
+      "As a user, I want the overall website background to be gold, so that the interface has a consistent visual theme.",
+      "As a user, I want the website components to be styled with dark goldenrod, so that the interface elements are visually cohesive."
+    ]
+  },
+  {
+    "id": "train_000501",
+    "name": "train_000501",
+    "application_type": "Job Search Platforms",
+    "initial_requirements": "I need a mini-program that connects job seekers, bounty hunters, and enterprise owners for job hunting and bounty management.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to secure my account through registration and login, and manage my personal information by editing my profile."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to communicate with other users through a messaging feature."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect bounties to be posted based on job positions, and for bounty hunters to receive announcements and accept tasks."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the mini-program to have a feather white background and dark green components."
+      }
+    ],
+    "URL": [
+      "As a user, I want to register and log in to the mini-program, so that I can access the system and secure my account.",
+      "As a user, I want to view my personal information and edit my profile, so that I can manage my account details.",
+      "As a user, I want to engage in messaging, so that I can communicate with other users.",
+      "As a job seeker, I want to browse job postings from enterprises, so that I can find suitable employment opportunities.",
+      "As a bounty hunter, I want to receive bounty announcements from enterprise owners, so that I can view and accept bounty tasks.",
+      "As an enterprise owner, I want to post bounties based on job positions, so that I can distribute recruitment tasks to bounty hunters.",
+      "As a user, I want the mini-program background to be feather white, so that the interface has a specific visual style.",
+      "As a user, I want the components to be dark green, so that the interface elements are visually consistent."
+    ]
+  },
+  {
+    "id": "train_000774",
+    "name": "train_000774",
+    "application_type": "Streaming and Interactive Platforms",
+    "initial_requirements": "I need a website that allows users to play and transcode multimedia files.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to upload music and video files to the website for processing."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to download transcoded files after conversion."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the website to support multiple file formats and codecs."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website background to be silver."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all website components to be styled with dark slate blue."
+      }
+    ],
+    "URL": [
+      "As a user, I want to upload music and video files, so that I can process them for playback or transcoding.",
+      "As a user, I want to play uploaded music and video files, so that I can view or listen to the content.",
+      "As a user, I want to transcode and convert the format of uploaded files, so that I can transform media into my desired format.",
+      "As a user, I want to download transcoded files after conversion, so that I can use them locally.",
+      "As a user, I want the website to support multiple file formats and codecs, so that I can work with various types of media files.",
+      "As a user, I want the website background to be silver, so that the interface has a clean and modern appearance.",
+      "As a user, I want all website components to be styled with dark slate blue, so that the interface is visually cohesive."
+    ]
+  },
+  {
+    "id": "train_001523",
+    "name": "train_001523",
+    "application_type": "Browser-Based Games",
+    "initial_requirements": "I need a simulation management WeChat mini-game where players can order food and play games to earn points and view rankings.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to consume the ordered food within the game simulation."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to receive points or rewards for specific actions including ordering, eating, and playing games."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the rankings to be presented as a leaderboard displaying players' point rankings."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer container backgrounds to use a rosy brown color."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer component visuals to use a brown color."
+      }
+    ],
+    "URL": [
+      "As a player, I want to browse menus, so that I can see available food options.",
+      "As a player, I want to select dishes, so that I can choose items to order.",
+      "As a player, I want to place orders, so that I can submit my food selections.",
+      "As a player, I want to eat, so that I can consume my ordered food in the game.",
+      "As a player, I want to play games, so that I can enjoy entertainment features in the mini-game.",
+      "As a player, I want to receive points or rewards for ordering, eating, and playing games, so that I can track my progress and achievements.",
+      "As a player, I want to view a leaderboard displaying players' point rankings, so that I can compare my performance with other players.",
+      "As a player, I want container backgrounds to use rosy brown color, so that the game has a consistent visual theme.",
+      "As a player, I want component visuals to use brown color, so that the interface is visually cohesive."
+    ]
+  },
+  {
+    "id": "train_006652",
+    "name": "train_006652",
+    "application_type": "CRM Systems",
+    "initial_requirements": "I need a one-stop shop website for creating and managing ads, and viewing ad performance.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to log in to securely access the ad management functionalities."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to make adjustments to my ads based on their performance results."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the outer layout to use light green."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the UI blocks to use dark olive green."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in, so that I can securely access the ad management functionalities.",
+      "As a user, I want to create new ads, so that I can launch advertising campaigns.",
+      "As a user, I want to manage existing ads, so that I can maintain and update my advertising content.",
+      "As a user, I want to view ad performance and make corresponding adjustments, so that I can optimize my ads based on their results.",
+      "As a user, I want the outer layout to use light green, so that the website adheres to the intended visual design.",
+      "As a user, I want the UI blocks to use dark olive green, so that the interface components are visually consistent."
+    ]
+  },
+  {
+    "id": "train_001112",
+    "name": "train_001112",
+    "application_type": "Personal Portfolio Sites",
+    "initial_requirements": "I need a website for displaying and managing digital photos.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to log in to the website to access my personal photo management features."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to add photos to the system by uploading them directly or importing them from external sources."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to export photos to download or transfer them to other locations."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to view specific details and information about my photos."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the website to have an ivory main background."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the controls to use chocolate color."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in to the website, so that I can access my personal photo management features.",
+      "As a user, I want to upload photos, so that I can store and manage them in the system.",
+      "As a user, I want to import photos, so that I can bring photos from external sources into my collection.",
+      "As a user, I want to export photos, so that I can download or transfer my photos to other locations.",
+      "As a user, I want to view photo details, so that I can see information about my photos.",
+      "As a user, I want to manage uploaded photos, so that I can organize and maintain my photo collection.",
+      "As a user, I want the website to have an ivory main background, so that the interface has a consistent and pleasant appearance.",
+      "As a user, I want the controls to use chocolate color, so that the interface elements are visually distinct and consistent."
+    ]
+  },
+  {
+    "id": "train_000445",
+    "name": "train_000445",
+    "application_type": "ERP Platforms",
+    "initial_requirements": "I need an inventory management system that handles procurement, sales, and stock, along with customer management and financial reporting.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to log in to access the inventory management system."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to handle procurement and sales activities specifically through creating and managing orders."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I expect to perform warehouse operations to manage the storage and movement of goods."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to maintain customer information and record interactions as part of customer management."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect to view financial status and analyze business performance using reports and charts."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the system background to be apricot and the components to be chocolate colored."
+      }
+    ],
+    "URL": [
+      "As a user, I want to log in, so that I can access the inventory management system.",
+      "As a user, I want to create and manage procurement orders, so that I can handle purchasing activities.",
+      "As a user, I want to create and manage sales orders, so that I can handle sales activities.",
+      "As a user, I want to perform warehouse operations, so that I can manage the storage and movement of goods.",
+      "As a user, I want to view and manage inventory, so that I can monitor stock levels.",
+      "As a user, I want to manage customer relationships, so that I can maintain customer information and interactions.",
+      "As a user, I want to view financial status, so that I can track the financial health of the business.",
+      "As a user, I want to view reports and charts, so that I can analyze business performance.",
+      "As a user, I want the system background to be apricot, so that the interface has the required visual style.",
+      "As a user, I want the system components to be chocolate colored, so that the interface elements are visually consistent."
+    ]
+  },
+  {
+    "id": "train_000514",
+    "name": "train_000514",
+    "application_type": "News Aggregators",
+    "initial_requirements": "I need a web application that summarizes trending content from social media platforms and allows users to browse and view these summaries.",
+    "Implicit Requirements": [
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the application to fetch trending content from Twitter, LinkedIn, and Reddit."
+      },
+      {
+        "Aspect": "Content",
+        "RequirementText": "I expect the application to process and summarize content using the LDA model."
+      },
+      {
+        "Aspect": "Interaction",
+        "RequirementText": "I prefer to browse and view summaries in a list view."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer the application background to be moccasin."
+      },
+      {
+        "Aspect": "Style",
+        "RequirementText": "I prefer all elements to be styled with sandy brown color."
+      }
+    ],
+    "URL": [
+      "As a user, I want the application to fetch trending content from Twitter, LinkedIn, and Reddit, so that I can access social media content from multiple platforms in one place.",
+      "As a user, I want the application to process and summarize content using the LDA model, so that I can receive accurate and concise summaries of trending topics.",
+      "As a user, I want to browse and view summaries in a list view, so that I can effectively scan and understand trending content.",
+      "As a user, I want the application background to be moccasin, so that the interface has a warm and pleasant appearance.",
+      "As a user, I want all elements to be styled with sandy brown color, so that the interface maintains visual consistency."
+    ]
+  }
+]
