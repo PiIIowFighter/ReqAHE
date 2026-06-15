@@ -1,68 +1,43 @@
-from reqahe.envs.dataset import Scenario
-from reqahe.envs.reqelicit import ReqElicitSession, _normalize_action_type
-from reqahe.llm.client import OpenAICompatibleClient
+from reqahe.runtime.dataset import Scenario
+from reqahe.runtime.metrics import calculate_tkqr
+from reqahe.runtime.reqelicit_session import initialize_remaining_requirements, scenario_to_task
 
 
-def test_normalize_action_type_maps_common_aliases() -> None:
-    assert _normalize_action_type("ask_question", "ask_question") == "probe"
-    assert _normalize_action_type("finish_interview", "finish_interview") == "finish"
-    assert _normalize_action_type("CLARIFY", "ask_question") == "clarify"
-    assert _normalize_action_type("weird_label", "finish_interview") == "finish"
-    assert _normalize_action_type("weird_label", "ask_question") == "probe"
-
-
-def test_validate_evaluator_accepts_alias_action_type() -> None:
-    session = ReqElicitSession(
-        Scenario(
-            scenario_id="train_0001",
-            name="train_0001",
-            app_type="test",
-            initial_req="initial",
-            implicit_requirements=[{"id": "IR1", "Aspect": "Content", "RequirementText": "req"}],
-            final_requirements=[],
-            raw={},
-        ),
-        OpenAICompatibleClient(),
-        oracle_model="oracle",
-        evaluator_model="evaluator",
+def test_initialize_remaining_requirements_uses_ir_ids() -> None:
+    scenario = Scenario(
+        scenario_id="train_0001",
+        name="train_0001",
+        app_type="test",
+        initial_req="initial",
+        implicit_requirements=[
+            {"Aspect": "Content", "RequirementText": "first"},
+            {"Aspect": "Style", "RequirementText": "second"},
+        ],
+        final_requirements=[],
+        raw={},
     )
-    result = session._validate_evaluator(
-        {
-            "action_type": "ask_question",
-            "hit": True,
-            "hit_requirement_ids": ["IR1"],
-            "reasoning": "elicited requirement",
-        },
-        fallback_action="ask_question",
-    )
-    assert result["action_type"] == "probe"
-    assert result["hit"] is True
-    assert result["hit_requirement_ids"] == ["IR1"]
+    remaining = initialize_remaining_requirements(scenario)
+    assert [req["id"] for req in remaining] == ["IR1", "IR2"]
+    assert remaining[0]["aspect"] == "Content"
+    assert remaining[1]["dimension"] == "NFR"
 
 
-def test_validate_evaluator_ignores_unknown_requirement_ids() -> None:
-    session = ReqElicitSession(
-        Scenario(
-            scenario_id="train_0002",
-            name="train_0002",
-            app_type="test",
-            initial_req="initial",
-            implicit_requirements=[{"id": "IR1", "Aspect": "Content", "RequirementText": "req"}],
-            final_requirements=[],
-            raw={},
-        ),
-        OpenAICompatibleClient(),
-        oracle_model="oracle",
-        evaluator_model="evaluator",
+def test_scenario_to_task_preserves_implicit_requirements() -> None:
+    scenario = Scenario(
+        scenario_id="train_0002",
+        name="demo",
+        app_type="CRM Systems",
+        initial_req="Need a CRM",
+        implicit_requirements=[{"Aspect": "Interaction", "RequirementText": "login"}],
+        final_requirements=["story"],
+        raw={"id": "train_0002", "initial_requirements": "Need a CRM"},
     )
-    result = session._validate_evaluator(
-        {
-            "action_type": "probe",
-            "hit": True,
-            "hit_requirement_ids": ["IR1", "IR999"],
-            "reasoning": "partial hit",
-        },
-        fallback_action="ask_question",
-    )
-    assert result["hit"] is True
-    assert result["hit_requirement_ids"] == ["IR1"]
+    task = scenario_to_task(scenario)
+    assert task["application_type"] == "CRM Systems"
+    assert task["Implicit Requirements"] == scenario.implicit_requirements
+
+
+def test_calculate_tkqr_matches_reqelicitgym_discount() -> None:
+    hit_sequence = [0, 1, 0, 1]
+    tkqr = calculate_tkqr(hit_sequence, total_reqs=4)
+    assert 0.0 < tkqr < 1.0

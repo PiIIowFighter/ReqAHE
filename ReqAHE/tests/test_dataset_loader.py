@@ -2,8 +2,8 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from reqahe.config import apply_cli_overrides
-from reqahe.envs.dataset import Scenario, dataset_filename, load_or_create_splits, resolve_dataset_path
-from reqahe.utils.io import read_json, write_json
+from reqahe.infra.io import read_json, write_json
+from reqahe.runtime.dataset import Scenario, dataset_filename, load_or_create_splits, resolve_dataset_path
 
 
 def test_dataset_filename_supports_numbered_variants() -> None:
@@ -32,7 +32,7 @@ def test_dataset_number_base_override_disables_suffix() -> None:
         dataset_number="base",
         split=None,
         iterations=None,
-        middleware_mode=None,
+        reflection_mode=None,
     )
 
     updated = apply_cli_overrides(config, args)

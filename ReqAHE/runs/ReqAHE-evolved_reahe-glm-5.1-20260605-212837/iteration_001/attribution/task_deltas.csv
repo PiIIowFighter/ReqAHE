@@ -1,4 +1,0 @@
-scenario_id,delta_IRE,delta_TKQR,delta_main_score,status
-train_000195,0.200000,0.545455,0.320909,improved
-train_000468,0.600000,0.545455,0.580909,improved
-train_000483,0.750000,0.727273,0.742046,improved

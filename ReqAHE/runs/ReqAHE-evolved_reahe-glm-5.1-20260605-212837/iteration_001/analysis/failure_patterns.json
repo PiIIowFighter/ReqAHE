@@ -1,8 +1,0 @@
-{
-  "no_domain_pivot_after_uncertainty": 4,
-  "compound_question_ignoring_guard": 5,
-  "oracle_redirect_ignored": 3,
-  "style_requirement_never_probed": 1,
-  "content_requirement_never_probed": 1,
-  "wasted_turn_on_unproductive_topic": 4
-}

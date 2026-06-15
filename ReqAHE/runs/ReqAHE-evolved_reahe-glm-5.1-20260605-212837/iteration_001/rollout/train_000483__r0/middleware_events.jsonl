@@ -1,3 +1,0 @@
-{"type": "one_question_guard", "severity": "warn", "message": "Ask only one focused question this turn.", "middleware": "one_question_guard.py", "mode": "warn", "turn_index": 0}
-{"type": "one_question_guard", "severity": "warn", "message": "Ask only one focused question this turn.", "middleware": "one_question_guard.py", "mode": "warn", "turn_index": 1}
-{"type": "one_question_guard", "severity": "warn", "message": "Ask only one focused question this turn.", "middleware": "one_question_guard.py", "mode": "warn", "turn_index": 2}

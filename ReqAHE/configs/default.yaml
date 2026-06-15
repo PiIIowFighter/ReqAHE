@@ -1,34 +1,73 @@
 project:
   name: ReqAHE
 paths:
-  project_root: D:\Desktop\科研\.ICSE\projects\ReqAHE
-  typoagent_root: D:\Desktop\科研\.ICSE\projects\TypoAgent
-  reqelicitgym_root: D:\Desktop\科研\.ICSE\projects\ReqAHE\ReqElicitGym
-  ahe_root: D:\Desktop\科研\.ICSE\projects\agentic-harness-engineering
+  reqelicitgym_root: ReqElicitGym
 llm:
   base_url: ${OPENAI_BASE_URL}
   api_key: ${OPENAI_API_KEY}
   model: ${OPENAI_MODEL}
   temperature: 0.2
   max_tokens: 6000
+  trust_env: false
+  timeout: 120
+  max_retries: 8
 roles:
   interviewer_model: ${INTERVIEWER_MODEL}
-  oracle_model: ${ORACLE_MODEL}
-  evaluator_model: ${EVALUATOR_MODEL}
-  debugger_model: ${DEBUGGER_MODEL}
-  evolver_model: ${EVOLVER_MODEL}
+  judge_model: ${JUDGE_MODEL}
+  user_model: ${USER_MODEL}
+  diagnoser_model: ${DIAGNOSER_MODEL}
+  refiner_model: ${REFINER_MODEL}
+  skill_router_model: ${SKILL_ROUTER_MODEL}
+  memory_router_model: ${MEMORY_ROUTER_MODEL}
+  memorizer_model: ${MEMORIZER_MODEL}
 evaluation:
   max_turns: 15
   rollouts_per_task: 1
+  user_answer_quality: high
   dataset_file: converted_scenarios.json
   dataset_number: 1
   task_mode: sample
   split: train
+  scenario_count: 0
   seed: 42
 evolution:
   iterations: 3
-  middleware_mode: warn
+  batch_size: 0
+  reflection_mode: warn
+  refiner:
+    json_attempts: 2
+    transport_attempts: 2
+    max_repair_attempts: 1
+    edit_generation_max_tokens: 4000
   objective:
     main_score: "0.65*IRE + 0.35*TKQR"
-    target_IRE: 0.69
-    target_TKQR: 0.59
+runtime:
+  close_wait_cleanup:
+    enabled: true
+    interval_tasks: 1
+    interval_seconds: 180
+  skill_router:
+    enabled: true
+    max_selected_skills: 3
+    min_relevance: 0.45
+    log_events: true
+  memory:
+    enabled: true
+    apply_timing: next_batch
+    rollback_policy: no_rollback
+    max_points_per_trace: 6
+    max_chars_per_point: 180
+    max_points_per_type: 40
+    max_chars_per_type_memory: 3000
+    deduplicate: true
+    log_events: true
+  memory_router:
+    enabled: true
+    max_selected_types: 1
+    min_confidence: 0.45
+    log_events: true
+    max_chars_per_type_memory: 2200
+  self_reflection:
+    max_retries: 1
+    retry_on_modes: ["warn", "enforce"]
+    max_feedback_events: 3

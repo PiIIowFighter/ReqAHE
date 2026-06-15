@@ -1,8 +1,0 @@
-{
-  "style_found_via_direct_probe": 10,
-  "content_found_via_broad_functional_question": 6,
-  "interaction_found_via_role_or_workflow_question": 8,
-  "early_requirement_hit_turn_0_or_1": 9,
-  "style_requirement_guard_triggered_and_followed": 7,
-  "all_requirements_found": 12
-}

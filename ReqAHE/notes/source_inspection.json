@@ -1,12 +1,11 @@
 {
-  "ahe_evolve": "D:\\Desktop\\科研\\.ICSE\\projects\\agentic-harness-engineering\\evolve.py",
-  "ahe_config": "D:\\Desktop\\科研\\.ICSE\\projects\\agentic-harness-engineering\\configs\\base.yaml",
-  "typoagent_interviewer": "D:\\Desktop\\科研\\.ICSE\\projects\\TypoAgent\\TypoAgent\\retriever\\interviewer.py",
-  "typoagent_builder": "D:\\Desktop\\科研\\.ICSE\\projects\\TypoAgent\\run_typobuilder.py",
-  "typoagent_run_missing": "D:\\Desktop\\科研\\.ICSE\\projects\\TypoAgent\\run_typoagent.py",
-  "reqelicit_dataset": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\ReqElicitGym\\data\\converted_scenarios_1.json",
-  "reqelicit_env": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\ReqElicitGym\\env\\reqelicit_gym.py",
-  "reqelicit_prompts": "D:\\Desktop\\科研\\.ICSE\\projects\\ReqAHE\\ReqElicitGym\\env\\prompts.py",
+  "configured_roots": {
+    "project_root": ".",
+    "reqelicitgym_root": "ReqElicitGym"
+  },
+  "reqelicit_dataset": "ReqElicitGym/data/converted_scenarios_1.json",
+  "reqelicit_env": "ReqElicitGym/env/reqelicit_gym.py",
+  "reqelicit_prompts": "ReqElicitGym/env/prompts.py",
   "reqelicitgym_import_available": true,
   "import_error": ""
 }

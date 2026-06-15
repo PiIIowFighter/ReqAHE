@@ -7,6 +7,13 @@ from .utils import JUDGE_PROMPT_SYSTEM, JUDGE_PROMPT_USER
 from .utils import PASSIVE_RESPONSE_SYSTEM, PASSIVE_RESPONSE_USER
 
 
+def _return_and_close_client(client: OpenAI, value: Any) -> Any:
+    close = getattr(client, "close", None)
+    if callable(close):
+        close()
+    return value
+
+
 def model_call(
     system_prompt: str,
     user_prompt: str,
@@ -72,26 +79,28 @@ def model_call(
             if return_json:
                 response_json = parse_output_as_json(response_text)
                 if return_usage:
-                    return response_json, usage_info
+                    return _return_and_close_client(client, (response_json, usage_info))
                 else:
-                    return response_json
+                    return _return_and_close_client(client, response_json)
             else:
                 if return_usage:
-                    return response_text, usage_info
+                    return _return_and_close_client(client, (response_text, usage_info))
                 else:
-                    return response_text
+                    return _return_and_close_client(client, response_text)
         except Exception as e:
             print(f"[ReqElicitGym - Model Call] Error calling model: {e}")
             try_time += 1
             if try_time >= 3:
                 if return_usage:
-                    return ({}, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}) if return_json else ("", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
+                    value = ({}, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}) if return_json else ("", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
+                    return _return_and_close_client(client, value)
                 else:
-                    return {} if return_json else ""
+                    return _return_and_close_client(client, {} if return_json else "")
             time.sleep(2)
     if return_usage:
-        return ({}, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}) if return_json else ("", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
-    return {} if return_json else ""
+        value = ({}, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}) if return_json else ("", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
+        return _return_and_close_client(client, value)
+    return _return_and_close_client(client, {} if return_json else "")
 
 
 def model_call_with_thinking(
@@ -161,26 +170,28 @@ def model_call_with_thinking(
             if return_json:
                 response_json = parse_output_as_json(response_text)
                 if return_usage:
-                    return response_json, usage_info
+                    return _return_and_close_client(client, (response_json, usage_info))
                 else:
-                    return response_json
+                    return _return_and_close_client(client, response_json)
             else:
                 if return_usage:
-                    return response_text, usage_info
+                    return _return_and_close_client(client, (response_text, usage_info))
                 else:
-                    return response_text
+                    return _return_and_close_client(client, response_text)
         except Exception as e:
             print(f"[ReqElicitGym - Model Call] Error calling model: {e}")
             try_time += 1
             if try_time >= 3:
                 if return_usage:
-                    return ({}, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}) if return_json else ("", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
+                    value = ({}, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}) if return_json else ("", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
+                    return _return_and_close_client(client, value)
                 else:
-                    return {} if return_json else ""
+                    return _return_and_close_client(client, {} if return_json else "")
             time.sleep(2)
     if return_usage:
-        return ({}, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}) if return_json else ("", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
-    return {} if return_json else ""
+        value = ({}, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}) if return_json else ("", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
+        return _return_and_close_client(client, value)
+    return _return_and_close_client(client, {} if return_json else "")
 
 
 def judge_interviewer_action(
