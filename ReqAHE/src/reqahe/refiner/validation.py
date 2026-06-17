@@ -4,6 +4,8 @@ import ast
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 from reqahe.harness.component_schema import (
     ALLOWED_ARTIFACT_TYPES,
     validate_component_file,
@@ -29,6 +31,7 @@ FORBIDDEN_PATH_PREFIXES = (
     "runs",
     "envs",
     "configs",
+    "src/reqahe/runtime/reflection.py",
     "src/reqahe/evaluator",
     "src/reqahe/runner",
 )
@@ -166,6 +169,7 @@ def validate_proposed_edits(
     errors.extend(_validate_max_skill_creates(file_edits))
     errors.extend(_validate_skill_frontmatter_edits(file_edits))
     errors.extend(_validate_skill_similarity_rules(normalized, workspace, structured_errors))
+    errors.extend(_validate_reflection_registry_edit_bundle(file_edits))
 
     if not errors:
         try:
@@ -319,6 +323,11 @@ def _path_allowed_by_write_policy(relative_path: str, write_policy: dict[str, An
         if component == "skills" and rel.name == "SKILL.md" and len(rel.parts) == 3 and rel.parts[0] == "skills":
             return True
         if component == "memory" and rel.parent.as_posix() == "memory" and rel.name != "README.md" and rel.suffix == ".md":
+            return True
+        if (
+            component == "self_reflection"
+            and relative_path == "self_reflection/registry.yaml"
+        ):
             return True
         if (
             component == "self_reflection"
@@ -539,6 +548,61 @@ def _validate_max_skill_creates(file_edits: list[Any]) -> list[str]:
     return []
 
 
+def _validate_reflection_registry_edit_bundle(file_edits: list[Any]) -> list[str]:
+    registry_edits = [
+        edit
+        for edit in file_edits
+        if isinstance(edit, dict) and str(edit.get("relative_path") or "") == "self_reflection/registry.yaml"
+    ]
+    if not registry_edits:
+        return []
+    check_paths = {
+        str(edit.get("relative_path") or "")
+        for edit in file_edits
+        if isinstance(edit, dict)
+        and str(edit.get("relative_path") or "").startswith("self_reflection/")
+        and str(edit.get("relative_path") or "").endswith("/check.py")
+    }
+    prompt_paths = {
+        str(edit.get("relative_path") or "")
+        for edit in file_edits
+        if isinstance(edit, dict)
+        and str(edit.get("relative_path") or "").startswith("self_reflection/")
+        and str(edit.get("relative_path") or "").endswith("/PROMPT.md")
+    }
+    if not check_paths or not prompt_paths:
+        return ["self_reflection/registry.yaml edit must accompany self_reflection/<id>/check.py and PROMPT.md edits"]
+    content = _edit_content(registry_edits[-1])
+    if content is None:
+        return ["self_reflection/registry.yaml edit requires complete registry content"]
+    try:
+        registry = yaml.safe_load(content) or {}
+    except yaml.YAMLError as exc:
+        return [f"self_reflection/registry.yaml is not valid YAML: {exc}"]
+    checks = registry.get("checks") if isinstance(registry, dict) else None
+    if not isinstance(checks, list):
+        return ["self_reflection/registry.yaml checks must be a list"]
+    registered_check_paths = {
+        (Path("self_reflection") / str(item.get("file") or "")).as_posix()
+        for item in checks
+        if isinstance(item, dict) and item.get("file")
+    }
+    missing = sorted(check_paths - registered_check_paths)
+    if missing:
+        return [f"self_reflection/registry.yaml must register edited check files: {missing}"]
+    return []
+
+
+def _edit_content(edit: dict[str, Any]) -> str | None:
+    if isinstance(edit.get("new_content"), str):
+        return str(edit["new_content"])
+    if isinstance(edit.get("lines"), list):
+        return "\n".join(str(line) for line in edit["lines"])
+    if isinstance(edit.get("new_lines"), list):
+        return "\n".join(str(line) for line in edit["new_lines"])
+    return None
+
+
 def _find_audit_for_skill_edit(
     relative_path: str,
     skill_id: str,
@@ -679,4 +743,26 @@ def _validate_python_check_ast(content: str, rel_path: str) -> list[str]:
                 errors.append(f"{rel_path} check function must be check(candidate, state)")
     if not found:
         errors.append(f"{rel_path} must define check(candidate, state)")
+    errors.extend(_validate_self_reflection_no_hardcoding(content, rel_path))
     return errors
+
+
+def _validate_self_reflection_no_hardcoding(content: str, rel_path: str) -> list[str]:
+    lowered = content.lower()
+    forbidden_markers = (
+        "hidden_requirement",
+        "hidden requirement",
+        "implicit_requirement",
+        "ground_truth",
+        "answer_key",
+        "oracle",
+        "test_set",
+        "test set",
+        "task_id",
+        "scenario_id",
+        "expected answer",
+        "final requirement answer",
+    )
+    return [
+        f"{rel_path} must not depend on hidden data, test data, task id, scenario id, or expected answers"
+    ] if any(marker in lowered for marker in forbidden_markers) else []

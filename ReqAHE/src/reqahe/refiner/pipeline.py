@@ -8,7 +8,7 @@ import traceback
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 import yaml
 
@@ -46,10 +46,13 @@ from reqahe.refiner.validation import validate_fix_plan, validate_proposed_edits
 
 PROMPT_DIR = Path(__file__).with_name("prompts")
 DEFAULT_REFINER_CONFIG: dict[str, Any] = {
-    "json_attempts": 2,
-    "transport_attempts": 2,
+    "json_attempts": 3,
+    "transport_attempts": 4,
     "max_repair_attempts": 1,
-    "edit_generation_max_tokens": 4000,
+    "edit_generation_max_tokens": 10000,
+    "compact_retry_on_empty": True,
+    "compact_retry_max_chars": 18000,
+    "save_llm_payloads": True,
 }
 MAX_REPAIR_ATTEMPTS = 1
 TARGET_FILE_CONTEXT_MAX_CHARS = 6000
@@ -195,10 +198,14 @@ def refine_harness(
     written_files: list[str] = []
     refiner_stats: dict[str, Any] = {}
     last_stage = "init"
+    refiner_call_stats = _initial_refiner_call_stats()
 
     try:
         last_stage = "fix_plan_running"
         _write_refiner_stage(refiner_dir, "fix_plan", "running", "calling LLM for fix plan")
+        _save_llm_payload(refiner_dir, "fix_plan_payload.json", fix_plan_payload, cfg)
+        refiner_call_stats["fix_plan_payload_chars"] = _json_chars(fix_plan_payload)
+        refiner_call_stats["fix_plan_attempts"] += 1
         fix_plan = call_llm_for_fix_plan(
             llm,
             refiner_model,
@@ -222,12 +229,19 @@ def refine_harness(
         last_stage = "generate_edits_running"
         _write_refiner_stage(refiner_dir, "generate_edits", "running", "calling LLM for file edits")
         edit_payload = build_edit_payload(workspace, fix_plan, write_policy, validator_errors=[])
-        refinement = call_llm_for_edits(
+        _save_llm_payload(refiner_dir, "edit_payload.full.json", edit_payload, cfg)
+        refiner_call_stats["edit_payload_full_chars"] = _json_chars(edit_payload)
+        refinement = _call_llm_for_edits_with_optional_compact(
             llm,
             refiner_model,
             load_refiner_prompt("generate_edits_and_validate.md"),
-            edit_payload,
+            workspace,
+            fix_plan,
+            write_policy,
+            full_payload=edit_payload,
             refiner_config=cfg,
+            refiner_dir=refiner_dir,
+            call_stats=refiner_call_stats,
         )
         refinement = _normalize_edits_from_llm(workspace, refinement, fix_plan)
         raw_refinement = deepcopy(refinement)
@@ -249,6 +263,7 @@ def refine_harness(
             iteration,
             refiner_config=cfg,
             max_repair_attempts=max_repair_attempts,
+            call_stats=refiner_call_stats,
         )
         _write_refiner_stage(refiner_dir, "validate", "done", "validation passed")
 
@@ -267,6 +282,7 @@ def refine_harness(
         )
         refiner_stats["ok"] = True
         refiner_stats["stage"] = "apply"
+        _add_repeat_update_warning(refiner_stats, refiner_dir)
         write_json(refiner_dir / "refiner_stats.json", refiner_stats)
         try:
             validate_workspace_after_write(workspace)
@@ -286,8 +302,16 @@ def refine_harness(
             raise
         _write_refiner_stage(refiner_dir, "apply", "done", "file edits applied")
         _write_refiner_stage(refiner_dir, "done", "done", "refiner completed")
+        refiner_call_stats["final_stage"] = "done"
+        refiner_call_stats["final_status"] = "ok"
+        refiner_call_stats["last_error"] = None
+        _write_refiner_call_stats(refiner_dir, refiner_call_stats)
     except KeyboardInterrupt:
         _write_refiner_stage(refiner_dir, last_stage, "interrupted", "manual interrupt")
+        refiner_call_stats["final_stage"] = _public_refiner_stage(last_stage)
+        refiner_call_stats["final_status"] = "failed"
+        refiner_call_stats["last_error"] = "manual interrupt"
+        _write_refiner_call_stats(refiner_dir, refiner_call_stats)
         _write_failure_artifacts(
             iteration_path,
             refiner_dir,
@@ -303,6 +327,10 @@ def refine_harness(
         raise
     except (RuntimeError, ValueError, TypeError, OSError, PermissionError) as exc:
         _write_refiner_stage(refiner_dir, last_stage, "failed", str(exc))
+        refiner_call_stats["final_stage"] = _public_refiner_stage(last_stage)
+        refiner_call_stats["final_status"] = "failed"
+        refiner_call_stats["last_error"] = str(exc)
+        _write_refiner_call_stats(refiner_dir, refiner_call_stats)
         _write_failure_artifacts(
             iteration_path,
             refiner_dir,
@@ -416,7 +444,74 @@ def build_edit_payload(
     schema_errors = load_skill_schema_errors_summary(workspace)
     if schema_errors:
         payload["skill_schema_errors_summary"] = schema_errors
+    skill_digest = _load_skill_evolution_digest_for_workspace(workspace)
+    if skill_digest:
+        payload["skill_evolution_digest"] = skill_digest
     return payload
+
+
+def build_compact_edit_payload(
+    workspace: Path,
+    fix_plan: dict[str, Any],
+    write_policy: dict[str, Any],
+    validator_errors: list[str] | None = None,
+    validator_structured_errors: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    target_files = collect_replace_or_append_targets(fix_plan)
+    compact_target_context = read_only_target_files(
+        workspace,
+        target_files,
+        max_chars=TARGET_FILE_CONTEXT_MAX_CHARS,
+    )
+    target_metadata: dict[str, Any] = {}
+    existing_catalog = _compact_skill_catalog(build_existing_skill_catalog(workspace))
+    target_skill_ids = {skill_id_from_path(path) for path in target_files if is_skill_markdown_path(path)}
+    if target_skill_ids:
+        target_metadata["skills"] = [
+            item
+            for item in existing_catalog
+            if str(item.get("skill_id") or "") in target_skill_ids
+            or str(item.get("path") or "") in target_files
+        ]
+    payload: dict[str, Any] = {
+        "approved_fix_plan": fix_plan,
+        "write_policy": write_policy,
+        "target_file_context": compact_target_context,
+        "target_component_metadata": target_metadata,
+        "selected_schemas": select_schemas_for_fix_plan(fix_plan),
+        "validator_errors": list((validator_errors or [])[:MAX_VALIDATOR_ERRORS_IN_PAYLOAD]),
+        "validator_structured_errors": list(validator_structured_errors or []),
+    }
+    route_summary = _load_route_stats_summary_for_workspace(workspace)
+    if route_summary:
+        payload["route_stats_summary"] = route_summary
+    skill_digest = _load_skill_evolution_digest_for_workspace(workspace)
+    if skill_digest:
+        payload["skill_evolution_digest"] = _compact_skill_evolution_digest(skill_digest, target_skill_ids)
+    schema_errors = load_skill_schema_errors_summary(workspace)
+    if schema_errors:
+        payload["skill_schema_errors_summary"] = schema_errors
+    return payload
+
+
+def should_compact_retry(exc: Exception, cfg: Mapping[str, Any]) -> bool:
+    if not bool(cfg.get("compact_retry_on_empty", True)):
+        return False
+    message = str(exc).lower()
+    retry_markers = (
+        "empty model response",
+        "empty response",
+        "content is empty",
+        "finish_reason=stop",
+        "request timed out",
+        "timeout",
+        "timed out",
+        "json decode failed",
+        "invalid json",
+        "schema validation failed",
+        "validation failed after normal repair",
+    )
+    return any(marker in message for marker in retry_markers)
 
 
 def build_artifact_index(workspace_dir: Path) -> dict[str, list[str]]:
@@ -440,7 +535,7 @@ def build_write_policy(workspace_dir: Path, declared_components: list[dict[str, 
         "max_fixes": 3,
         "allowed_components": allowed,
         "path_patterns": path_patterns,
-        "allow_registry_edit": False,
+        "allow_registry_edit": True,
         "forbid_memory_edits": True,
     }
 
@@ -562,6 +657,54 @@ def call_llm_for_edits(
     )
 
 
+def _call_llm_for_edits_with_optional_compact(
+    llm: OpenAICompatibleClient,
+    model: str,
+    system_prompt: str,
+    workspace: Path,
+    fix_plan: dict[str, Any],
+    write_policy: dict[str, Any],
+    *,
+    full_payload: dict[str, Any],
+    refiner_config: dict[str, Any],
+    refiner_dir: Path,
+    call_stats: dict[str, Any],
+    validator_errors: list[str] | None = None,
+    validator_structured_errors: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    call_stats["edit_generation_attempts"] += 1
+    try:
+        return call_llm_for_edits(
+            llm,
+            model,
+            system_prompt,
+            full_payload,
+            refiner_config=refiner_config,
+        )
+    except Exception as exc:
+        if not should_compact_retry(exc, refiner_config):
+            raise
+        compact_payload = build_compact_edit_payload(
+            workspace,
+            fix_plan,
+            write_policy,
+            validator_errors=validator_errors,
+            validator_structured_errors=validator_structured_errors,
+        )
+        compact_payload = _limit_compact_payload(compact_payload, int(refiner_config.get("compact_retry_max_chars") or 18000))
+        _save_llm_payload(refiner_dir, "edit_payload.compact.json", compact_payload, refiner_config)
+        call_stats["edit_payload_compact_chars"] = _json_chars(compact_payload)
+        call_stats["used_compact_retry"] = True
+        call_stats["edit_generation_attempts"] += 1
+        return call_llm_for_edits(
+            llm,
+            model,
+            system_prompt,
+            compact_payload,
+            refiner_config=refiner_config,
+        )
+
+
 def validate_and_plan_refinement(
     workspace: Path,
     refinement: dict[str, Any],
@@ -619,6 +762,7 @@ def _validate_with_optional_repairs(
     *,
     refiner_config: dict[str, Any] | None = None,
     max_repair_attempts: int | None = None,
+    call_stats: dict[str, Any] | None = None,
 ) -> tuple[list[tuple[str, str]], dict[str, Any], dict[str, Any], bool, dict[str, Any]]:
     repair_attempted = False
     last_exc: RuntimeError | None = None
@@ -658,6 +802,7 @@ def _validate_with_optional_repairs(
                     workspace=workspace,
                     iteration=iteration,
                 )
+                _add_repeat_update_warning(stats, refiner_dir)
                 _write_skill_similarity_audit(
                     refiner_dir,
                     normalized_refinement,
@@ -702,6 +847,7 @@ def _validate_with_optional_repairs(
                             workspace=workspace,
                             iteration=iteration,
                         )
+                        _add_repeat_update_warning(stats, refiner_dir)
                         _write_skill_similarity_audit(
                             refiner_dir,
                             dropped_refinement,
@@ -738,6 +884,7 @@ def _validate_with_optional_repairs(
             stats["stage"] = "validate"
             stats["error_type"] = "ValidationError"
             stats["message"] = str(last_exc)
+            _add_repeat_update_warning(stats, refiner_dir)
             _write_skill_similarity_audit(
                 refiner_dir,
                 normalized_refinement,
@@ -756,12 +903,25 @@ def _validate_with_optional_repairs(
             validator_errors=list(validation_report.get("errors") or []),
             validator_structured_errors=list(validation_report.get("structured_errors") or []),
         )
-        refinement = call_llm_for_edits(
+        _save_llm_payload(refiner_dir, "edit_payload.full.json", edit_payload, cfg)
+        if call_stats is not None:
+            call_stats["edit_payload_full_chars"] = max(
+                int(call_stats.get("edit_payload_full_chars") or 0),
+                _json_chars(edit_payload),
+            )
+        refinement = _call_llm_for_edits_with_optional_compact(
             llm,
             refiner_model,
             load_refiner_prompt("generate_edits_and_validate.md"),
-            edit_payload,
+            workspace,
+            fix_plan,
+            write_policy,
+            full_payload=edit_payload,
             refiner_config=cfg,
+            refiner_dir=refiner_dir,
+            call_stats=call_stats if call_stats is not None else _initial_refiner_call_stats(),
+            validator_errors=list(validation_report.get("errors") or []),
+            validator_structured_errors=list(validation_report.get("structured_errors") or []),
         )
         refinement = _normalize_edits_from_llm(workspace, refinement, fix_plan)
         write_json(refiner_dir / "proposed_edits.json", refinement)
@@ -831,6 +991,8 @@ def _validate_file_edit_target(relative_path: str, operation: str, component: st
             )
     elif component == "self_reflection" and name == "README.md":
         raise RuntimeError(f"harness refinement generation failed: self_reflection artifacts must not target {relative_path}")
+    elif component == "self_reflection" and relative_path == "self_reflection/registry.yaml":
+        return
     elif component == "self_reflection" and not (
         (name == "check.py" and len(parts) == 3 and parts[0] == "self_reflection")
         or (name == "PROMPT.md" and len(parts) == 3 and parts[0] == "self_reflection")
@@ -916,15 +1078,7 @@ def _schema_compliance_items(data: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def _reject_registry_file_edits(refinement: dict[str, Any]) -> None:
-    for edit in refinement.get("file_edits") or []:
-        if not isinstance(edit, dict):
-            continue
-        relative_path = str(edit.get("relative_path") or "")
-        if relative_path == "self_reflection/registry.yaml":
-            raise RuntimeError(
-                "LLM file_edits must not directly edit self_reflection/registry.yaml; "
-                "registry is synchronized by the runtime."
-            )
+    return
 
 
 def _strip_registry_file_edits(refinement: dict[str, Any]) -> dict[str, Any]:
@@ -1096,6 +1250,8 @@ def build_refiner_stats(
 ) -> dict[str, Any]:
     raw_edits = raw_refinement.get("file_edits") or []
     normalized_edits = normalized_refinement.get("file_edits") or []
+    touched_skill_ids = _touched_skill_ids_from_refinement(normalized_refinement)
+    operation_intents = _operation_intents_from_refinement(normalized_refinement)
     preview_valid_counts = _count_valid_artifacts_from_preview(normalized_edits)
     existing_skill_catalog = build_existing_skill_catalog(workspace) if workspace is not None else []
     similarity_audit = normalized_refinement.get("similarity_audit")
@@ -1123,6 +1279,10 @@ def build_refiner_stats(
         "repair_attempted": repair_attempted,
         "validator_error_count": len(validation_report.get("errors") or []),
         "validator_errors": list(validation_report.get("errors") or []),
+        "touched_skill_ids": touched_skill_ids,
+        "operation_intents": operation_intents,
+        "repeat_update_warning": False,
+        "repeat_update_reason": "",
         "existing_skill_count": len(existing_skill_catalog),
         "existing_skill_ids": [str(item.get("skill_id") or "") for item in existing_skill_catalog],
         "similar_skill_candidates": [
@@ -1145,6 +1305,32 @@ def build_refiner_stats(
         ],
         "iteration": f"iteration_{int(iteration):03d}" if iteration is not None else None,
     }
+
+
+def _touched_skill_ids_from_refinement(refinement: dict[str, Any]) -> list[str]:
+    touched: set[str] = set()
+    for edit in refinement.get("file_edits") or []:
+        if not isinstance(edit, dict):
+            continue
+        relative_path = str(edit.get("relative_path") or "")
+        if is_skill_markdown_path(relative_path):
+            touched.add(skill_id_from_path(relative_path))
+    return sorted(touched)
+
+
+def _operation_intents_from_refinement(refinement: dict[str, Any]) -> list[str]:
+    intents: set[str] = set()
+    for change in refinement.get("changes") or []:
+        if not isinstance(change, dict):
+            continue
+        for key in ("operation_intent", "operation", "intent"):
+            value = str(change.get(key) or "").strip()
+            if value:
+                intents.add(value)
+    for edit in refinement.get("file_edits") or []:
+        if isinstance(edit, dict) and edit.get("operation"):
+            intents.add(str(edit.get("operation")))
+    return sorted(intents)
 
 
 def _count_valid_artifacts_from_preview(file_edits: Any) -> dict[str, int]:
@@ -1389,6 +1575,124 @@ def _read_optional_json(path: Path, default: Any) -> Any:
         return read_json(path)
     except Exception:
         return default
+
+
+def _load_skill_evolution_digest_for_workspace(workspace: Path) -> dict[str, Any]:
+    path = workspace.parent / "analysis" / "skill_evolution_digest.json"
+    data = _read_optional_json(path, {})
+    return data if isinstance(data, dict) else {}
+
+
+def _load_route_stats_summary_for_workspace(workspace: Path) -> dict[str, Any]:
+    path = workspace.parent / "rollout_before" / "route_stats.json"
+    if not path.exists():
+        return {}
+    try:
+        from reqahe.runtime.route_stats import compact_route_stats_summary
+
+        return compact_route_stats_summary(read_json(path), max_skills=6)
+    except Exception:
+        return {}
+
+
+def _compact_skill_evolution_digest(digest: dict[str, Any], target_skill_ids: set[str]) -> dict[str, Any]:
+    skills = digest.get("skills") if isinstance(digest.get("skills"), dict) else {}
+    if not target_skill_ids:
+        return {"skills": dict(list(skills.items())[:6])}
+    return {
+        "skills": {
+            skill_id: item
+            for skill_id, item in skills.items()
+            if str(skill_id) in target_skill_ids
+        }
+    }
+
+
+def _initial_refiner_call_stats() -> dict[str, Any]:
+    return {
+        "fix_plan_payload_chars": 0,
+        "edit_payload_full_chars": 0,
+        "edit_payload_compact_chars": 0,
+        "fix_plan_attempts": 0,
+        "edit_generation_attempts": 0,
+        "used_compact_retry": False,
+        "final_stage": "fix_plan",
+        "final_status": "failed",
+        "last_error": None,
+    }
+
+
+def _json_chars(payload: dict[str, Any]) -> int:
+    try:
+        return len(json.dumps(payload, ensure_ascii=False))
+    except Exception:
+        return 0
+
+
+def _save_llm_payload(refiner_dir: Path, filename: str, payload: dict[str, Any], cfg: Mapping[str, Any]) -> None:
+    if not bool(cfg.get("save_llm_payloads", True)):
+        return
+    try:
+        write_json(refiner_dir / filename, payload)
+    except Exception:
+        return
+
+
+def _write_refiner_call_stats(refiner_dir: Path, stats: dict[str, Any]) -> None:
+    try:
+        write_json(refiner_dir / "refiner_call_stats.json", stats)
+    except Exception:
+        return
+
+
+def _public_refiner_stage(stage: str) -> str:
+    if "fix_plan" in stage:
+        return "fix_plan"
+    if "generate" in stage or "repair" in stage:
+        return "edit_generation"
+    if "validate" in stage:
+        return "validation"
+    if "apply" in stage or stage == "done":
+        return "done"
+    return "edit_generation"
+
+
+def _limit_compact_payload(payload: dict[str, Any], max_chars: int) -> dict[str, Any]:
+    if max_chars <= 0 or _json_chars(payload) <= max_chars:
+        return payload
+    compact = deepcopy(payload)
+    for key in ("skill_evolution_digest", "route_stats_summary", "target_component_metadata"):
+        if _json_chars(compact) <= max_chars:
+            break
+        compact.pop(key, None)
+    if _json_chars(compact) <= max_chars:
+        return compact
+    context = compact.get("target_file_context")
+    if isinstance(context, dict):
+        per_file_limit = max(1000, max_chars // max(len(context), 1) // 2)
+        compact["target_file_context"] = {
+            path: (str(content)[:per_file_limit] + "\n...[truncated]..." if len(str(content)) > per_file_limit else str(content))
+            for path, content in context.items()
+        }
+    return compact
+
+
+def _add_repeat_update_warning(stats: dict[str, Any], refiner_dir: Path) -> None:
+    touched = [str(item) for item in stats.get("touched_skill_ids") or [] if str(item).strip()]
+    stats.setdefault("repeat_update_warning", False)
+    stats.setdefault("repeat_update_reason", "")
+    if not touched:
+        return
+    digest = _read_optional_json(refiner_dir.parent / "analysis" / "skill_evolution_digest.json", {})
+    skills = digest.get("skills") if isinstance(digest, dict) and isinstance(digest.get("skills"), dict) else {}
+    repeated = [
+        skill_id
+        for skill_id in touched
+        if int((skills.get(skill_id) or {}).get("recent_touched_count") or 0) >= 2
+    ]
+    if repeated:
+        stats["repeat_update_warning"] = True
+        stats["repeat_update_reason"] = "same skill was updated repeatedly in recent batches: " + ", ".join(sorted(repeated))
 
 
 def _write_error_report(iteration_path: Path, exc: Exception, data: dict[str, Any], allowed_components: set[str]) -> None:

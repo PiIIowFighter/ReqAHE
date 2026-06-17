@@ -44,6 +44,20 @@ Use the following reasoning principles, but do not treat them as a fixed checkli
 - Memory is evidence produced by the memorizer. Do not localize failures to memory and do not ask the refiner to edit memory. If a failure appears related to memory retrieval or memory usage, localize it to system_prompt only when the global use rule is unclear, or to skills only when a skill's trigger/metadata should be adjusted.
 - If generated components are malformed or hard to route, localize to the editable component whose artifact should be clarified or repaired.
 
+Use self_reflection as the suspected component only when the evidence shows a recurring candidate-action quality issue that should be checked before the action is committed.
+
+Candidate-action quality issues may include:
+
+- the generated question is redundant with recent dialogue;
+- the generated question combines unrelated concerns in one turn;
+- the generated question drifts away from the latest user answer;
+- the generated finish action appears before enough evidence is elicited;
+- the final requirement summary is unsupported by the dialogue.
+
+Do not propose a concrete check implementation in diagnosis.
+Only localize the component and explain the evidence.
+Do not encode hidden requirements, task ids, scenario ids, or expected answers.
+
 # Using Route Stats
 
 When route_stats are available, explicitly consider whether the problem is caused by:

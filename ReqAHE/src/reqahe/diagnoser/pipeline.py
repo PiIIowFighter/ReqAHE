@@ -141,6 +141,9 @@ def build_full_trace_problem_payload(
         schema_errors = load_skill_schema_errors_summary(harness_dir)
         if schema_errors:
             payload["skill_schema_errors_summary"] = schema_errors
+    digest = _load_skill_evolution_digest(rollout.parent)
+    if digest:
+        payload["skill_evolution_digest"] = digest
     if trace_warnings:
         payload["trace_resolution_warnings"] = trace_warnings
     return payload
@@ -163,6 +166,9 @@ def build_component_localization_payload(
         schema_errors = load_skill_schema_errors_summary(harness_dir)
         if schema_errors:
             payload["skill_schema_errors_summary"] = schema_errors
+    digest = _load_skill_evolution_digest(rollout.parent) if rollout is not None else {}
+    if digest:
+        payload["skill_evolution_digest"] = digest
     return payload
 
 
@@ -194,6 +200,17 @@ def load_complete_clean_traces(rollout: Path) -> tuple[list[dict[str, Any]], lis
         trace = read_json(trace_path)
         traces.append(sanitize_trace_for_diagnoser(trace, result.get("metrics")))
     return traces, warnings
+
+
+def _load_skill_evolution_digest(batch_dir: Path) -> dict[str, Any]:
+    path = batch_dir / "analysis" / "skill_evolution_digest.json"
+    if not path.exists():
+        return {}
+    try:
+        data = read_json(path)
+    except Exception:
+        return {}
+    return data if isinstance(data, dict) else {}
 
 
 def _resolve_trace_dir(rollout: Path, result: dict[str, Any]) -> Path | None:

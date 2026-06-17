@@ -122,9 +122,11 @@ def test_judge_batch_decision_rules() -> None:
     retest_failed = judge_batch_decision(before, _metrics(0.9), refiner_ok=True, retest_ok=False)
 
     assert keep["decision"] == "keep"
-    assert tie["decision"] == "keep"
+    assert tie["decision"] == "rollback_small_delta"
     assert rollback["decision"] == "rollback"
     assert refiner_failed["decision"] == "rollback_refiner_failed"
+    assert refiner_failed["metrics_compared"] is False
+    assert refiner_failed["delta_main_score"] is None
     assert retest_failed["decision"] == "rollback_retest_failed"
 
 
@@ -455,6 +457,7 @@ def test_batch_refiner_failed_writes_status_and_workspace_after(tmp_path: Path, 
     status = read_json(batch_dir / "rollout_after" / "STATUS.json")
 
     assert (batch_dir / "workspace_after").exists()
+    assert not (batch_dir / "workspace_candidate").exists()
     assert decision["decision"] == "rollback_refiner_failed"
     assert decision["accepted_workspace"].endswith("workspace_after")
     assert decision["harness_source"] == "workspace_before"

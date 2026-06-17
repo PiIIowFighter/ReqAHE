@@ -45,6 +45,19 @@ When editing skills:
 - include risk_notes that warn about possible overuse or misuse;
 - avoid embedding benchmark-specific answers or hidden requirements;
 - avoid introducing a fixed taxonomy unless required by the project schema.
+- avoid rewriting the same skill with equivalent wording.
+
+A skill update must make a substantive change in at least one of:
+
+- use_when
+- avoid_when
+- risk_notes
+- concrete interview procedure
+- routing metadata
+
+If the plan says demote or disable, implement that intent directly through metadata or registry-compatible fields instead of expanding the skill body.
+
+Do not create new skills that merely duplicate existing skill semantics. Prefer update/demote/disable when the observed issue is about an existing skill's routing or scope.
 
 When demoting a skill:
 
@@ -74,9 +87,12 @@ When creating a skill:
 
 When creating or updating self_reflection:
 
-- write only `self_reflection/<reflection-id>/check.py` and, when needed, `self_reflection/<reflection-id>/PROMPT.md`;
-- do not edit `self_reflection/README.md`, `harness_seed/self_reflection/README.md`, old checklist documents, or `self_reflection/registry.yaml`;
-- registry synchronization is handled by runtime code.
+- write only `self_reflection/<reflection-id>/check.py`, `self_reflection/<reflection-id>/PROMPT.md`, and `self_reflection/registry.yaml`;
+- do not edit `self_reflection/README.md`, `harness_seed/self_reflection/README.md`, old checklist documents, runtime code, evaluator code, or dataset files;
+- checks may inspect only the current candidate action, dialogue state, and recent history;
+- checks must emit warnings or events only, not final answers;
+- do not read hidden answers, test data, oracle data, evaluator internals, external files, network resources, or secrets;
+- do not hard-code scenario types, task ids, scenario ids, fixed expected answers, or domain-specific requirement answers.
 
 # Required Minimal Skill Front Matter
 
@@ -132,7 +148,8 @@ Return strict JSON only.
 - If you output `schema_compliance`, it will be ignored and rebuilt from `edits[*].path` or `file_edits[*].relative_path`.
 - Do not edit files outside the allowed harness workspace.
 - Do not modify evaluator, benchmark data, run results, LLM configuration, or decision logic.
-- Do not target `self_reflection/README.md`, `skills/README.md`, `registry.yaml`, project source paths, evaluator paths, dataset paths, or run result paths.
+- Do not target `self_reflection/README.md`, `skills/README.md`, project source paths, evaluator paths, dataset paths, or run result paths.
+- For self_reflection, `self_reflection/registry.yaml` is allowed only when it registers the check bundle created or updated by the same formal edit set.
 - Do not add route_stats into batch keep/rollback logic.
 - Do not add hard-coded rules for any specific skill id.
 - Do not add pre-defined skill-type enumerations unless already required by the current schema.

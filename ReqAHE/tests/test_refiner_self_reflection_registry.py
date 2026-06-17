@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
-
 from reqahe.diagnoser.pipeline import load_declared_components
 from reqahe.harness.workspace import is_workspace_write_allowed
 from reqahe.refiner.pipeline import apply_file_edits, build_write_policy, select_schemas_for_fix_plan, validate_and_plan_refinement
@@ -54,7 +52,7 @@ def test_system_write_registry_yaml_allowed(tmp_path: Path) -> None:
     assert "example_check" in (workspace / "self_reflection" / "registry.yaml").read_text(encoding="utf-8")
 
 
-def test_llm_direct_registry_edit_rejected_by_validation(tmp_path: Path) -> None:
+def test_registry_edit_without_bundle_rejected_by_validation(tmp_path: Path) -> None:
     workspace = _workspace_with_manifest(tmp_path, {"self_reflection": "self_reflection/README.md"})
     fix_plan = _reflection_fix_plan()
     declared = load_declared_components(workspace)
@@ -88,30 +86,55 @@ def test_llm_direct_registry_edit_rejected_by_validation(tmp_path: Path) -> None
         raw_refinement=refinement,
     )
     assert report["ok"] is False
-    assert any("registry is synchronized by the runtime" in err for err in report["errors"])
+    assert any("must accompany" in err for err in report["errors"])
 
 
-def test_validate_and_plan_refinement_rejects_registry_yaml(tmp_path: Path) -> None:
+def test_validate_and_plan_refinement_allows_legal_registry_yaml_edit(tmp_path: Path) -> None:
     workspace = _workspace_with_manifest(tmp_path, {"self_reflection": "self_reflection/README.md"})
     refinement = {
-        "changes": [{"change_id": "C1", "fix_id": "F1", "component": "self_reflection", "summary": "bad"}],
+        "changes": [{"change_id": "C1", "fix_id": "F1", "component": "self_reflection", "summary": "add check"}],
         "file_edits": [
             {
+                "relative_path": "self_reflection/example_check/check.py",
+                "operation": "create",
+                "new_content": _valid_reflection_check_py("example_check"),
+            },
+            {
+                "relative_path": "self_reflection/example_check/PROMPT.md",
+                "operation": "create",
+                "new_content": "Revise the candidate.",
+            },
+            {
                 "relative_path": "self_reflection/registry.yaml",
-                "operation": "replace",
-                "old": 'version: "0.2"',
-                "new_content": 'version: "0.2"\nchecks: []\n',
-            }
+                "operation": "create",
+                "new_content": (
+                    'version: "0.2"\n'
+                    "checks:\n"
+                    "  - id: example_check\n"
+                    "    hook: question_candidate\n"
+                    "    file: example_check/check.py\n"
+                    "    prompt: example_check/PROMPT.md\n"
+                    "    applies_when: always\n"
+                    "    mode: warn\n"
+                    "    priority: 20\n"
+                ),
+            },
         ],
         "schema_compliance": [
             {
                 "component": "self_reflection",
                 "schema_name": "reflection_check_bundle_v1",
-                "new_or_updated_files": ["self_reflection/registry.yaml"],
+                "new_or_updated_files": [
+                    "self_reflection/example_check/check.py",
+                    "self_reflection/example_check/PROMPT.md",
+                    "self_reflection/registry.yaml",
+                ],
             }
         ],
-        "refiner_rationale": "bad",
+        "refiner_rationale": "add check",
         "similarity_audit": [],
     }
-    with pytest.raises(RuntimeError, match="registry is synchronized by the runtime"):
-        validate_and_plan_refinement(workspace, refinement, {"system_prompt", "self_reflection"})
+    planned = validate_and_plan_refinement(workspace, refinement, {"system_prompt", "self_reflection"})
+    planned_map = dict(planned)
+    assert "self_reflection/registry.yaml" in planned_map
+    assert "example_check/check.py" in planned_map["self_reflection/registry.yaml"]

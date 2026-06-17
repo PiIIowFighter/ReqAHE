@@ -78,6 +78,34 @@ Consider these possibilities:
 
 These are reasoning options, not hard-coded categories. Choose the action supported by evidence.
 
+When an existing skill has been repeatedly updated but the same failure pattern remains, avoid making another superficial wording-only update.
+
+Consider whether the evidence supports:
+
+- update: the skill is useful but needs clearer usage boundaries or stronger operational guidance.
+- demote: the skill is being selected too often relative to the observed benefit.
+- disable: the skill repeatedly contributes to regressions or irrelevant behavior.
+- create: the evidence shows a distinct recurring failure pattern not covered by existing skills.
+- self_reflection: the issue is about candidate action quality before execution, rather than reusable interview strategy.
+
+If a skill appears useful when selected but is rarely selected, prefer improving its metadata and routing cues instead of rewriting the whole body.
+
+Do not repeatedly rewrite the same skill with equivalent wording. If the previous update did not help, consider changing component choice or operation intent.
+
+# Self-Reflection Planning
+
+Choose self_reflection only when:
+
+- the problem is about the quality of a generated candidate question or candidate finish;
+- the problem can be detected from current dialogue state and candidate action;
+- retrying the candidate action could plausibly avoid the failure;
+- the behavior is not better handled as a reusable interview skill.
+
+Do not choose self_reflection merely to encode domain knowledge or expected hidden requirements.
+Do not create checks that depend on ground-truth implicit requirements.
+Do not create checks that hard-code scenario types, task ids, or expected answers.
+Do not create checks that require reading test data, oracle hidden data, evaluator internals, or run-specific answer files.
+
 # Allowed Operations
 
 Use one of the following operations for each planned change:
@@ -100,7 +128,7 @@ Use these target paths:
 
 Do not target `self_reflection/README.md`, `skills/README.md`, `registry.yaml`, project source files, run results, evaluator files, dataset files, or files under `runs`.
 
-For self_reflection, the fix plan primary target must be `self_reflection/<reflection-id>/check.py`. If a new reflection id is needed, use a short neutral id abstracted from the issue, such as `question_focus_check` or `finish_evidence_check`, without benchmark-specific leakage.
+For self_reflection, the fix plan primary target must be `self_reflection/<reflection-id>/check.py`. If a new reflection id is needed, use a short neutral id abstracted from the issue without benchmark-specific leakage.
 
 # Required Skill Schema
 

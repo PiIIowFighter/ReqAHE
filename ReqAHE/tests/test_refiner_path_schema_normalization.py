@@ -129,12 +129,12 @@ def test_self_reflection_bundle_schema_compliance_and_primary_target(tmp_path: P
         "changes": [],
         "file_edits": [
             {
-                "relative_path": "self_reflection/question_focus_check/check.py",
+                "relative_path": "self_reflection/example_reflection_bundle/check.py",
                 "operation": "create",
                 "new_content": "def check(candidate, state):\n    return []\n",
             },
             {
-                "relative_path": "self_reflection/question_focus_check/PROMPT.md",
+                "relative_path": "self_reflection/example_reflection_bundle/PROMPT.md",
                 "operation": "create",
                 "new_content": "Revise the candidate question.",
             },
@@ -146,8 +146,8 @@ def test_self_reflection_bundle_schema_compliance_and_primary_target(tmp_path: P
             _fix(
                 component="self_reflection",
                 target_file_hint=(
-                    "self_reflection/question_focus_check/check.py + "
-                    "self_reflection/question_focus_check/PROMPT.md"
+                    "self_reflection/example_reflection_bundle/check.py + "
+                    "self_reflection/example_reflection_bundle/PROMPT.md"
                 ),
                 operation_intent="create",
             )
@@ -157,14 +157,14 @@ def test_self_reflection_bundle_schema_compliance_and_primary_target(tmp_path: P
     normalized_plan = _normalize_fix_plan_target_hints(fix_plan)
     normalized_edits = _normalize_edits_from_llm(tmp_path, refinement, normalized_plan)
 
-    assert normalized_plan["fix_plan"][0]["target_file_hint"] == "self_reflection/question_focus_check/check.py"
+    assert normalized_plan["fix_plan"][0]["target_file_hint"] == "self_reflection/example_reflection_bundle/check.py"
     assert normalized_edits["schema_compliance"] == [
         {
             "component": "self_reflection",
             "schema_name": "reflection_check_bundle_v1",
             "new_or_updated_files": [
-                "self_reflection/question_focus_check/PROMPT.md",
-                "self_reflection/question_focus_check/check.py",
+                "self_reflection/example_reflection_bundle/PROMPT.md",
+                "self_reflection/example_reflection_bundle/check.py",
             ],
         }
     ]

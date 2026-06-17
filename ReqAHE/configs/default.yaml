@@ -35,10 +35,17 @@ evolution:
   batch_size: 0
   reflection_mode: warn
   refiner:
-    json_attempts: 2
-    transport_attempts: 2
+    json_attempts: 3
+    transport_attempts: 4
     max_repair_attempts: 1
-    edit_generation_max_tokens: 4000
+    edit_generation_max_tokens: 10000
+    compact_retry_on_empty: true
+    compact_retry_max_chars: 18000
+    save_llm_payloads: true
+  decision:
+    min_keep_delta_main_score: 0.02
+    max_allowed_IRE_drop: 0.01
+    rollback_small_delta: true
   objective:
     main_score: "0.65*IRE + 0.35*TKQR"
 runtime:

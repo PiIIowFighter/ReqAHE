@@ -917,7 +917,7 @@ def test_preview_validation_accepts_new_bundle_with_check_and_prompt(tmp_path: P
     validate_modified_workspace_preview(workspace, planned)
 
 
-def test_refiner_rejects_registry_edit_from_llm_output(tmp_path: Path) -> None:
+def test_refiner_rejects_too_many_mixed_file_edits(tmp_path: Path) -> None:
     workspace = _workspace_with_manifest(
         tmp_path,
         {
@@ -982,7 +982,7 @@ def test_refiner_rejects_registry_edit_from_llm_output(tmp_path: Path) -> None:
         "self_validation": _skill_self_validation(),
     }
 
-    with pytest.raises(RuntimeError, match="registry is synchronized by the runtime"):
+    with pytest.raises(RuntimeError, match="at most 3 edits"):
         validate_and_plan_refinement(
             workspace,
             refinement,

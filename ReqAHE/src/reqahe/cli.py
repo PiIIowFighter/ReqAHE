@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,7 @@ from reqahe.evolution.loop import (
     write_batch_decision,
     write_iteration_artifacts,
     write_rollout_after_status,
+    write_skill_evolution_digest,
 )
 from reqahe.refiner import refine_harness
 from reqahe.harness.workspace import copy_harness_seed
@@ -312,6 +314,7 @@ def _run_evolve(args: argparse.Namespace, config: dict, resume_run_dir: str | No
                     f"[iteration {iteration}/{iterations} batch {batch_idx}/{batch_count}] diagnoser status=running",
                     flush=True,
                 )
+                write_skill_evolution_digest(iteration_dir, batch_dir, workspace_before)
                 llm = _llm(config)
                 try:
                     run_elicitation_diagnosis(
@@ -372,6 +375,8 @@ def _run_evolve(args: argparse.Namespace, config: dict, resume_run_dir: str | No
                 except Exception as exc:
                     refiner_ok = False
                     refiner_error_message = str(exc)
+                    if workspace_candidate.exists():
+                        shutil.rmtree(workspace_candidate)
                     write_text(batch_dir / "refiner.log", f"Refiner failed: {exc}\n")
                     print(
                         f"[iteration {iteration}/{iterations} batch {batch_idx}/{batch_count}] "
@@ -503,6 +508,7 @@ def _run_evolve(args: argparse.Namespace, config: dict, resume_run_dir: str | No
                     after_result.get("metrics") or {},
                     refiner_ok=refiner_ok,
                     retest_ok=retest_ok,
+                    decision_config=config.get("evolution", {}).get("decision") or {},
                 )
                 if not status_write_ok:
                     batch_decision["reason"] = (
@@ -568,6 +574,8 @@ def _run_evolve(args: argparse.Namespace, config: dict, resume_run_dir: str | No
             )
         pre_update_aggregate = aggregate_rollout_dirs(pre_rollout_dirs, max_turns)
         post_judged_aggregate = aggregate_rollout_dirs(post_rollout_dirs, max_turns)
+        iteration_workspace = iteration_dir / "workspace"
+        copy_harness_seed(project_root, iteration_workspace, source_workspace=accepted_workspace)
         write_iteration_artifacts(
             iteration_dir,
             iteration=iteration,
@@ -577,9 +585,8 @@ def _run_evolve(args: argparse.Namespace, config: dict, resume_run_dir: str | No
             pre_update_aggregate=pre_update_aggregate,
             post_judged_aggregate=post_judged_aggregate,
             max_turns=max_turns,
+            final_workspace=iteration_workspace,
         )
-        iteration_workspace = iteration_dir / "workspace"
-        copy_harness_seed(project_root, iteration_workspace, source_workspace=accepted_workspace)
         _write_metadata(iteration_dir, "evolved_reahe", split, task_mode, config, "internal_holdout_result")
         source_workspace = iteration_workspace
         previous_iteration_metrics = post_judged_aggregate

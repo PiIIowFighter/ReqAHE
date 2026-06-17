@@ -73,6 +73,9 @@ REFLECTION_PROMPT_LEAKAGE_PATTERNS = [
     re.compile(r"\boracle\s+prompt\b", flags=re.IGNORECASE),
     re.compile(r"\bjudge\s+prompt\b", flags=re.IGNORECASE),
     re.compile(r"\banswer\s+key\b", flags=re.IGNORECASE),
+    re.compile(r"\btask_id\b", flags=re.IGNORECASE),
+    re.compile(r"\bscenario_id\b", flags=re.IGNORECASE),
+    re.compile(r"\btest\s+set\b", flags=re.IGNORECASE),
     re.compile(r"\bfinal\s+requirement\b", flags=re.IGNORECASE),
     re.compile(r"\bgold\b", flags=re.IGNORECASE),
     re.compile(r"隐藏需求", flags=re.IGNORECASE),
@@ -481,6 +484,21 @@ def _validate_python_check_sandbox(module: ast.Module, rel_path: str) -> None:
                 raise RuntimeError(f"{rel_path} imports forbidden module {node.module}")
         elif isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in forbidden_calls:
             raise RuntimeError(f"{rel_path} calls forbidden function {node.func.id}")
+    source = ast.unparse(module).lower() if hasattr(ast, "unparse") else ""
+    forbidden_markers = (
+        "hidden_requirement",
+        "hidden requirement",
+        "implicit_requirement",
+        "ground_truth",
+        "answer_key",
+        "task_id",
+        "scenario_id",
+        "test_set",
+        "test set",
+        "expected answer",
+    )
+    if any(marker in source for marker in forbidden_markers):
+        raise RuntimeError(f"{rel_path} must not depend on hidden data, test data, task id, scenario id, or expected answers")
 
 
 def _registry_id(item: dict[str, Any]) -> str:

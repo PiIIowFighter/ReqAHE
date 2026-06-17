@@ -6,6 +6,12 @@ from pathlib import Path
 
 from reqahe.infra.io import ensure_dir, read_json, write_json, write_text
 
+DEFAULT_DECISION_CONFIG = {
+    "min_keep_delta_main_score": 0.02,
+    "max_allowed_IRE_drop": 0.01,
+    "rollback_small_delta": True,
+}
+
 
 def write_attribution(iteration_dir: str | Path, previous_rollout: str | Path | None, current_rollout: str | Path) -> Path:
     iteration = Path(iteration_dir)
@@ -102,7 +108,17 @@ def judge_batch_decision(
     *,
     refiner_ok: bool = True,
     retest_ok: bool = True,
+    decision_config: dict | None = None,
 ) -> dict:
+    cfg = {**DEFAULT_DECISION_CONFIG, **(decision_config or {})}
+    min_keep_delta = float(cfg.get("min_keep_delta_main_score", 0.02) or 0.0)
+    max_ire_drop = float(cfg.get("max_allowed_IRE_drop", 0.01) or 0.0)
+    rollback_small_delta = bool(cfg.get("rollback_small_delta", True))
+    thresholds = {
+        "min_keep_delta_main_score": min_keep_delta,
+        "max_allowed_IRE_drop": max_ire_drop,
+        "rollback_small_delta": rollback_small_delta,
+    }
     before_main = float(before_metrics.get("main_score", 0.0) or 0.0)
     after_main = float(after_metrics.get("main_score", 0.0) or 0.0)
     delta_ire = round(float(after_metrics.get("mean_IRE", 0.0) or 0.0) - float(before_metrics.get("mean_IRE", 0.0) or 0.0), 6)
@@ -111,12 +127,16 @@ def judge_batch_decision(
     if not refiner_ok:
         return {
             "decision": "rollback_refiner_failed",
-            "reason": "Refiner failed or validation failed; restoring workspace_before.",
+            "reason": "refiner did not produce a valid candidate workspace",
             "before_main_score": before_main,
-            "after_main_score": after_main,
-            "delta_main_score": delta_main,
-            "delta_mean_IRE": delta_ire,
-            "delta_mean_TKQR": delta_tkqr,
+            "after_main_score": None,
+            "delta_main_score": None,
+            "delta_mean_IRE": None,
+            "delta_mean_TKQR": None,
+            "effective_delta_main_score": 0.0,
+            "metrics_compared": False,
+            "is_small_delta": False,
+            "decision_thresholds": thresholds,
         }
     if not retest_ok:
         return {
@@ -127,25 +147,50 @@ def judge_batch_decision(
             "delta_main_score": delta_main,
             "delta_mean_IRE": delta_ire,
             "delta_mean_TKQR": delta_tkqr,
+            "effective_delta_main_score": delta_main,
+            "metrics_compared": bool(after_metrics),
+            "is_small_delta": False,
+            "decision_thresholds": thresholds,
         }
-    if after_main >= before_main:
-        return {
-            "decision": "keep",
-            "reason": "after.main_score >= before.main_score",
-            "before_main_score": before_main,
-            "after_main_score": after_main,
-            "delta_main_score": delta_main,
-            "delta_mean_IRE": delta_ire,
-            "delta_mean_TKQR": delta_tkqr,
-        }
-    return {
-        "decision": "rollback",
-        "reason": "after.main_score < before.main_score",
+    common = {
         "before_main_score": before_main,
         "after_main_score": after_main,
         "delta_main_score": delta_main,
         "delta_mean_IRE": delta_ire,
         "delta_mean_TKQR": delta_tkqr,
+        "effective_delta_main_score": delta_main,
+        "metrics_compared": True,
+        "is_small_delta": 0 <= delta_main < min_keep_delta,
+        "decision_thresholds": thresholds,
+    }
+    if delta_main > 0 and "mean_IRE" in before_metrics and "mean_IRE" in after_metrics and delta_ire < -max_ire_drop:
+        return {
+            **common,
+            "decision": "rollback_metric_tradeoff",
+            "reason": "main_score improved but mean_IRE dropped beyond the allowed threshold",
+        }
+    if delta_main >= min_keep_delta:
+        return {
+            **common,
+            "decision": "keep",
+            "reason": "delta_main_score meets min_keep_delta_main_score",
+        }
+    if 0 <= delta_main < min_keep_delta and rollback_small_delta:
+        return {
+            **common,
+            "decision": "rollback_small_delta",
+            "reason": "delta_main_score is non-negative but below min_keep_delta_main_score",
+        }
+    if delta_main >= 0:
+        return {
+            **common,
+            "decision": "keep",
+            "reason": "non-negative delta accepted because rollback_small_delta is disabled",
+        }
+    return {
+        **common,
+        "decision": "rollback",
+        "reason": "after.main_score < before.main_score",
     }
 
 
